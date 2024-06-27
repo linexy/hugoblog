@@ -1,8 +1,8 @@
 baseURL  =  "https://immmmm.com"
 languageCode = "zh-CN"
 # DefaultContentLanguage = "zh-CN"
-title  =  "木木木木木"
-subtitle = "不问明天，悠然浪费"
+title  =  "linexy半生"
+subtitle = "总有些美好值得为之奋斗！"
 
 
 theme  =  "hello-friend"
@@ -46,7 +46,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   weight="6"
 
 [Author]
-  name = "林木木"
+  name = "linexy"
   
 [params]
   # dir name of your blog content (default is `content/posts`)
@@ -64,7 +64,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   DateFormatSingle = "2006-01-02 15:04:05"
   ReadMore = "阅读全文"
 
-  EditPath = 'https://github.com/lmm214/immmmm/edit/master/content'
+  EditPath = 'https://github.com/linexy/hugoblog/edit/master/content'
 
 [markup]
   [markup.goldmark]
