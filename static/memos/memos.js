@@ -282,7 +282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }else{
     try {
-      memoOurList = await getMemoListData("https://memobbs.app/memos.json"); // 获取自定义列表
+      memoOurList = await getMemoListData("../memos/memos.json"); // 获取自定义列表
     } catch (error) {
       memoOurList = memoDefaultList
     }
