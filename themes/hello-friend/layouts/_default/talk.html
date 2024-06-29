@@ -76,26 +76,4 @@ body{background: #2f2f2f;color: #f5f5f5;font-family: lxgw wenkai screen, -apple-
   </style>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif+SC:500&display=swap" media="print" onload="this.media='all'">
 </head>
-<body>
-  <h2 class="post-title">你言我语<sup>By Twikoo</sup></h2>
-  <div id="tcomment"></div>
-  <script type="text/javascript" src="/twikoo1629.js"></script>
-  <script>
-    twikoo.init({
-      envId: 'https://tk.edui.fun/',
-      el: '#tcomment',
-      path: '/talk/',
-      onCommentLoaded: function () {
-        var myShow = document.getElementsByClassName('tk-icon'),mySubmit = document.querySelector('.tk-submit')
-        var myLength= 1;
-        for (i = 0; i < myShow.length;i++) {myLength += myLength + i};
-        if(myLength > 1){mySubmit.style.setProperty('display','block','important')}else{mySubmit.remove}
-        var tkMain = document.getElementsByClassName('tk-main'),tkReplies = document.getElementsByClassName('tk-replies');
-        for (var i=0;i<tkMain.length;i++){
-          tkMain[i].index=i;tkMain[i].onclick = function () {tkReplies[this.index].classList.add("tk-replies-height");}
-        }
-      }
-    })
-  </script>
-</body>
 </html>
