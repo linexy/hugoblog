@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
 var bbDom = document.querySelector('#bber-talk') || '';
 if(bbDom){memoTalks();}
 function memoTalks(){
-var bbUrl = "https://me.edui.fun/api/v1/memo?creatorId=101&rowStatus=NORMAL&limit=10"
+var bbUrl = "https://memos.lzsay.com/api/v1/memo?creatorId=101&rowStatus=NORMAL&limit=10"
 fetch(bbUrl).then(res => res.json()).then( resdata =>{
     var result = '',resultAll="",data = resdata
     for(var i=0;i < data.length;i++){
@@ -30,7 +30,7 @@ setInterval(function() {
 }
 //memos 相册
 var albumDom = document.querySelector('#album') || '';
-var memoUrl = "https://me.edui.fun/"
+var memoUrl = "https://memos.lzsay.com/"
 if(albumDom){memoAlbum(6);}
 function memoAlbum(numb){
     let limit = numb || 8;
