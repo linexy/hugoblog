@@ -3,9 +3,10 @@ title: 广发Visa巴黎奥运主题鼎极无限卡
 slug: daily
 tags:
   - 日常
-feature: https://img.lzsay.com/lzsay-img/2024/07/c3ad043a2764c5ea8acd7547ba239aa7.png
+feature: https://img.lzsay.com/lzsay-img/2024/07/61a13ad9ce7ef2d2ab9576b4138c0320.png
 date: 2024-07-01
 ---
+
 ![image.png](https://img.lzsay.com/lzsay-img/2024/07/c3ad043a2764c5ea8acd7547ba239aa7.png)
 前几天看到公众号有推荐广发的Visa巴黎奥运主题的无限卡，颜值很高，关键是有效期内免年费，免年费的卡就不想什么权益了，名字听起来高大尚。广发今年通过一系列的积分温暖活动，彻底变废卡了。
 <!--more-->
