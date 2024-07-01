@@ -3,7 +3,7 @@ title: 广发Visa巴黎奥运主题鼎极无限卡
 slug: daily
 tags:
   - 日常
-feature: https://img.lzsay.com/lzsay-img/2024/07/61a13ad9ce7ef2d2ab9576b4138c0320.png
+feature: https://img.lzsay.com/lzsay-img/2024/07/7036ac7bccd2c9cd4765ab5d7b5c4d32.png
 date: 2024-07-01
 ---
 
