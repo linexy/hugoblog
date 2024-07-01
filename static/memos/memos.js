@@ -638,7 +638,6 @@ async function getMemos(search) {
     let data = memoCreatorMap[item.creatorName];
     return {...item, ...data};
   });
-  //memoData = await getMemoCount(memoData);
   memoDom.innerHTML = "";
   this.updateData(memoData);
   setTimeout(function() {
@@ -1015,11 +1014,6 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
             item.avatar = memosMeAvatarUrl
             item.link = memosPath
           });
-          if (mode == "NOPUBLIC") {
-            memosCount = data.length;
-            window.localStorage && window.localStorage.setItem("memos-response-count",  memosCount);
-            data = data.filter((item) => item.visibility !== "PUBLIC");
-          }
           memoData = data.flatMap(result => result);
           memoList.forEach(item => {
             memoCreatorMap[item.creatorName] = item;
@@ -1028,9 +1022,6 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
             let data = memoCreatorMap[item.creatorName];
             return {...item, ...data};
           });
-          if (mode !== "NOPUBLIC") {
-            memoData = await this.getMemoCount(memoData);
-          }
           memoDom.innerHTML = "";
           this.updateData(memoData);
           if(!random && memoData.length >= 8 ){
@@ -1057,7 +1048,6 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
             let data = memoCreatorMap[item.creatorName];
             return {...item, ...data};
           });
-          memoData = await this.getMemoCount(memoData);
           memoDom.innerHTML = "";
           this.updateData(memoData);
           if(memoData.length >= 8 ){
@@ -1314,7 +1304,6 @@ function viaNow(e){
 
 function getEditIcon() {
   let memosContent = '',memosVisibility = '',memosResource = [],memosRelation=[];
-  let memosCount = window.localStorage && window.localStorage.getItem("memos-response-count");
   let memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
   let memosOpenId = window.localStorage && window.localStorage.getItem("memos-access-token");
   let getEditor = window.localStorage && window.localStorage.getItem("memos-editor-display");
