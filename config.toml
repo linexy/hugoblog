@@ -21,13 +21,9 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 
 [menu]
   [[menu.main]]
-  name="哔哔"
+  name="日常"
   url="/bbs/"
   weight="1"
-  [[menu.main]]
-  name="友圈"
-  url="/friends/"
-  weight="2"
   [[menu.main]]
   name="好物"
   url="/goods/"
@@ -36,10 +32,6 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   name="归档"
   url="/archives/"
   weight="4"
-  [[menu.main]]
-  name="导航"
-  url="https://edui123.com/"
-  weight="5"
   [[menu.main]]
   name="关于"
   url="/about/"
@@ -82,7 +74,4 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 [outputFormats.Atom]
   mediatype = "application/rss"
   baseName = "atom"
-
-[params.twikoo]
-	enable = true
 

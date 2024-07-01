@@ -31,7 +31,7 @@
     })
   }
 //文章内显示豆瓣条目 https://immmmm.com/post-show-douban-item/
-var dbAPI = "https://douban-api.edui.fun/";
+var dbAPI = "https://dbapi.lzsay.com/";
 var dbA = document.querySelectorAll(".post-content a[href*='douban.com/subject/']:not([rel='noreferrer'])") || '';
 if(dbA){
   for(var i=0;i < dbA.length;i++){
@@ -95,7 +95,7 @@ function umiTongji(){
   var umiId = "c27bd84b-02a3-4c3f-a168-0d7fadec9c74"
   var umiToken = "o7UpYT1CFrJwL0lmIOY2IzKz23jJdQ3S/gVJJwlK9a+rNtJjXB/7sfEEKXfODAGTXe+d0/wE0tjib+iOZ1eo864qvspZBnt0bzO1edvhnHI6pZ7STLG/8OqJFoJEez0zUvme0XdkYHS+arEptgK0WXijkB2xmfEtD/2lfR5aLwY4QOjmCN+ADzt9TVdNV+bKfirH2s8fKvzcQEKxUCqXxDNMHPzRrHwyEGqv0GZ8CwQqTqL5hdfGsApq9p5XX19X4eaurjFFeBBAjPXu51stmCc82iBkqNhB6y7qT6xHdONqmoaz85gKVPgt/KAaNNIrx+ydW87DbmRi3XTJqj8J4bkgDcLqiV6Mc9UoWZCwf+UUvOtkY6vWwBCRV4Zd4YuFNiUNfw6izIg1Psj+Jjyej4w2oKABSVdrEWLFAL6bhkMzSQLlsl2imzfPMdw="
   var umiTime = Date.parse(new Date()); //获取当前时间戳
-  var umiUrl = "https://u.edui.fun/api/websites/"+umiId+"/stats?start_at=0000000000&end_at="+umiTime;
+  var umiUrl = "https://u.lzsay.com/api/websites/"+umiId+"/stats?start_at=0000000000&end_at="+umiTime;
   fetch(umiUrl,{
     method: 'GET',
     mode: 'cors',

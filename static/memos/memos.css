@@ -330,37 +330,6 @@ blockquote {
 	height: 100%
 }
 
-/* twikoo */
-.tk-tag,
-.tk-extras,
-.tk-row.actions .tk-action-icon.__markdown,
-.tk-preview,
-.tk-content p a.at {
-	display: none !important;
-}
-
-.tk-replies .tk-content {
-	font-size: 1em !important;
-}
-
-.tk-content img {
-	max-width: 100% !important;
-	max-height: 100% !important;
-	vertical-align: initial !important;
-}
-
-.tk-owo-emotion {
-	width: 30px;
-}
-
-.tk-footer {
-	display: none;
-}
-
-.dark .OwO .OwO-body {
-	background-color: var(--dark-background);
-	color: var(--light-background);
-}
 /* Memos Editor */
 .memos-editor{padding:0;}
 .memos-editor-body{display:flex;border-radius:.33rem;background-color:var(--light-background-secondary);flex-direction:column;}
@@ -707,22 +676,7 @@ buttom.cancel-edit-btn{margin-left:-1rem;}
 }
 
 .todo-btn{display:none;}
-.emoji-selector {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 4px;
-    margin: 8px 0;
-}
-.emoji-item {
-    padding: 4px;
-    font-size: 24px;
-    line-height: 1;
-    cursor: pointer
-}
-.emoji-item:hover {
-    background: var(--light-background-hover);
-    border-radius: 4px
-}
+
 @media (max-width:480px) {
 	.user-now-name{display:none;}
 	.user-now .row-fill span.mr-2{margin-right:0 !important;}

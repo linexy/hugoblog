@@ -96,7 +96,6 @@ const allCSS = `
 .video-wrapper{position:relative;padding-bottom:55%;width:100%;height:0;}
 .video-wrapper iframe{position:absolute;width:100%;height:100%;}
 .d-none{display:none!important;}
-.item-twikoo{margin:2rem 0 0 0;}
 .video-wrapper video{max-height:30vh;}
 #tag-list .tag-span{position:relative;display:inline-block;margin:2rem auto;padding:0 10px;border-radius:4px;background:rgba(0,0,0,.08);line-height:12px;}
 #tag-list .tag-span:before{position:absolute;top:-1rem;right:5px;width:5px;height:5px;content:'x';font-size:1rem;}
@@ -204,30 +203,7 @@ function getFirstList(apiV1){
     getNextList(apiV1)
   });
 }
-// 获取评论数量
-function updateTiwkoo(data) {
-  console.log(data)
-  let twiID = data.map((item) => memos + "m/" + item.id);
-  twikoo.getCommentsCount({
-    envId: bbMemo.twiEnv,
-    urls: twiID,
-    includeReply: true
-  }).then(function (res) {
-    updateCount(res)
-  }).catch(function (err) {
-    console.error(err);
-  });
-  function updateCount(res) {
-    let twiCount = res.map((item) => {
-      return Object.assign({},{'count':item.count})
-    });
 
-    let bbTwikoo = data.map((item,index) => {
-      return {...item, ...twiCount[index]};
-    });
-    updateHTMl(bbTwikoo)
-  }
-}
 //预加载下一页数据
 function getNextList(apiV1){
   let bbUrl = memos+"api/"+apiV1+"memo?creatorId="+bbMemo.creatorId+"&rowStatus=NORMAL&limit="+limit+"&offset="+offset;
@@ -248,7 +224,7 @@ function meNums(apiV1){
   let bbUrl = memos+"api/"+apiV1+"memo/stats?creatorId="+bbMemo.creatorId
   fetch(bbUrl).then(res => res.json()).then( resdata =>{
     if(resdata){
-      let allnums = `<div id="bb-footer"><p class="bb-allnums">共 ${resdata.length} 条 </p><p class="bb-allpub"><a href="https://immmmm.com/bbs/" target="_blank">Memos Public</a></p></div>`
+      let allnums = `<div id="bb-footer"><p class="bb-allnums">共 ${resdata.length} 条 </p><p class="bb-allpub"><a href="https://lzsay.com/bbs/" target="_blank">Memos Public</a></p></div>`
       bbLoad.insertAdjacentHTML('afterend', allnums);
     }
   })
@@ -307,8 +283,6 @@ async function updateHTMl(data){
             
       bbContREG = marked.parse(bbContREG)
         .replace(BILIBILI_REG, "<div class='video-wrapper'><iframe src='//www.bilibili.com/blackboard/html5mobileplayer.html?bvid=$1&as_wide=1&high_quality=1&danmaku=0' scrolling='no' border='0' frameborder='no' framespacing='0' allowfullscreen='true'></iframe></div>")
-        .replace(NETEASE_MUSIC_REG, "<meting-js auto='https://music.163.com/#/song?id=$1'></meting-js>")
-        .replace(QQMUSIC_REG, "<meting-js auto='https://y.qq.com/n/yqq/song$1.html'></meting-js>")
         .replace(QQVIDEO_REG, "<div class='video-wrapper'><iframe src='//v.qq.com/iframe/player.html?vid=$1' allowFullScreen='true' frameborder='no'></iframe></div>")
         .replace(YOUKU_REG, "<div class='video-wrapper'><iframe src='https://player.youku.com/embed/$1' frameborder=0 'allowfullscreen'></iframe></div>")
         .replace(YOUTUBE_REG, "<div class='video-wrapper'><iframe src='https://www.youtube.com/embed/$1' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen title='YouTube Video'></iframe></div>")
@@ -354,11 +328,7 @@ async function updateHTMl(data){
         }
       }
       let memosIdNow = memos.replace(/https\:\/\/(.*\.)?(.*)\..*/,'id-$2-')
-      let emojiReaction = `<emoji-reaction theme="system" class="reaction" endpoint="https://api-emaction.immmmm.com" reacttargetid="${memosIdNow+'memo-'+bbID}" style="line-height:normal;display:inline-flex;"></emoji-reaction>`
       let datacountDOM = ""
-      if(bbMemo.twiEnv){
-        datacountDOM = `<div class="datacount" data-twienv="${bbMemo.twiEnv}" data-id="${bbID}" onclick="loadTwikoo(this)"> ${data[i].count} 条评论 </div>`
-      }
       memosOpenIdNow = window.localStorage && window.localStorage.getItem("memos-access-token")
 
       result +=  `<li class="memo-${bbID}">
@@ -366,7 +336,6 @@ async function updateHTMl(data){
 
         ${neodbDom}
           <div class="bb-tool">
-            ${emojiReaction}
             ${ !memosOpenIdNow ? '':
               `<span class="archive-btn" onclick="archiveMemo(this)" data-id="${bbID}"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-img"><circle cx="12" cy="12" r="1"></circle><circle cx="19" cy="12" r="1"></circle><circle cx="5" cy="12" r="1"></circle></svg></span>`
             }
@@ -377,9 +346,6 @@ async function updateHTMl(data){
           <div class="bb-info">
             <a href="${memoUrl}" target="_blank"><span class="datatime">${new Date(data[i].createdTs * 1000).toLocaleString()}</span></a>
             ${datacountDOM}
-          </div>
-          <div class="item-twikoo twikoo-${bbID} d-none">
-            <div id="twikoo-${bbID}"></div>
           </div>
         </div>
       </li>`
@@ -400,7 +366,7 @@ async function updateHTMl(data){
 
 // Fetch NeoDB
 async function fetchNeoDB(url){
-  let urlNow = "https://api-neodb.immmmm.com/?url="+url
+  let urlNow = "https://db.lzsay.com/?url="+url
   let response = await fetch(urlNow);
   let dbFetch = await response.json();
   let neodbDom = `<div class="db-card">
@@ -522,66 +488,4 @@ function showTaglist(e){
     let tagHtml = `<div id="tag-list-all">${tagListDom}</div>`
     bbDom.insertAdjacentHTML('beforebegin', tagHtml);
   })
-}
-
-//前端加载 Twikoo 评论
-function loadTwikoo(e) {
-  let memoEnv = e.getAttribute("data-twienv")
-  let memoId = e.getAttribute("data-id")
-  let twikooDom = document.querySelector('.twikoo-'+memoId);
-  if (twikooDom.classList.contains('d-none')) {
-    document.querySelectorAll('.item-twikoo').forEach((item) => {item.classList.add('d-none');})
-    if(!document.getElementById("twikoo")){
-      twikooDom.classList.remove('d-none');
-      let domClass = document.getElementsByClassName('memo-'+memoId)
-      window.scrollTo({
-        top: domClass[0].offsetTop - 30,
-        behavior: "smooth"
-      });
-      twikoo.init({
-        envId: memoEnv,
-        el: '#twikoo-' + memoId,
-        path: bbMemo.memos+'m/'+ memoId,
-      });
-      setTimeout(function(){
-        document.getElementById("twikoo").id='twikoo-' + memoId;
-      }, 600);
-      let memoOne = location.pathname+'?memo='+bbMemos.memos+'m/'+memoId
-      history.pushState({memoOne: memoOne, title: document.title}, document.title, memoOne)
-    }
-  }else{
-    twikooDom.classList.add('d-none');
-  }
-}
-//前端加载 Artalk 评论
-function loadArtalk(e) {
-  let memoEnv = e.getAttribute("data-artenv")
-  let memoSite= e.getAttribute("data-artsite")
-  let memoId = e.getAttribute("data-id")
-  let ArtalkDom = document.querySelector('.artalk-'+memoId);
-  let ArtalkDom_ID = document.querySelector('#artalk-'+memoId);
-  if(!ArtalkDom_ID){
-    ArtalkDom.insertAdjacentHTML('afterbegin', '<div id="artalk-'+ memoId +'"></div>');
-  }
-  if (ArtalkDom.classList.contains('d-none')) {
-    document.querySelectorAll('.item-artalk').forEach((item) => {item.classList.add('d-none');})
-    if(!document.getElementById("artalk")){
-      ArtalkDom.classList.remove('d-none');
-      let domClass = document.getElementsByClassName('memo-'+memoId)
-      window.scrollTo({
-        top: domClass[0].offsetTop - 30,
-        behavior: "smooth"
-      });
-      Artalk.init({
-        el: '#artalk-' + memoId,
-        pageKey: '/m/' + memoId,
-        pageTitle: '',
-        site: memoSite,
-        server: memoEnv
-      });
-    }
-  }else{
-    ArtalkDom.classList.add('d-none');
-    ArtalkDom_ID.remove();
-  }
 }

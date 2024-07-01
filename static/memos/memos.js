@@ -17,7 +17,6 @@ var memoDefaultList = [
     "link": "https://memos.lzsay.com",
     "creatorId": "1",
     "avatar": "https://gravatar.memobbs.app/avatar/ba83fa02fc4b2ba621514941307e21be?s=80",
-    "twikoo": "https://metk.edui.fun"
   }
 ];
 
@@ -65,9 +64,6 @@ var memosPath = window.localStorage && window.localStorage.getItem("memos-access
 var memosMeID = window.localStorage && window.localStorage.getItem("memos-me-id");
 var memosMeNickname = window.localStorage && window.localStorage.getItem("memos-me-nickname");
 var memosMeAvatarUrl = window.localStorage && window.localStorage.getItem("memos-me-avatarurl");
-var memosMeArtalk = window.localStorage && window.localStorage.getItem("memos-artalk-input");
-var memosMeArtalkSite = window.localStorage && window.localStorage.getItem("memos-artalksite-input");
-var memosMeTwikoo = window.localStorage && window.localStorage.getItem("memos-twikoo-input");
 let cfwkAiUrl = window.localStorage && window.localStorage.getItem("memos-cfwkai-url")
 let geminiKey = window.localStorage && window.localStorage.getItem("memos-gemini-key")
 let filterName = window.localStorage && window.localStorage.getItem("memos-filter-name")
@@ -168,9 +164,6 @@ var memosEditorCont = `
       <div class="row flex-fill mr-3 p-2">
         <input name="memos-path-url" class="memos-path-input border-b input-text col-6 py-2" type="text" value="${memosPath ? memosPath : ''}" placeholder="Memo 网址">
         <input name="memos-token-url" class="memos-token-input border-b input-text col-6 py-2" type="text" value="${memosOpenId ? memosOpenId : ''}" placeholder="Access Tokens">
-        <input name="artalk-url" class="memos-artalk-input border-b input-text col-6 py-2" type="text" value="${memosMeArtalk ? memosMeArtalk : ''}" placeholder="[可选]Artalk 评论网址">
-        <input name="artalk-site-name" class="memos-artalksite-input border-b input-text col-6 py-2" type="text" value="${memosMeArtalkSite ? memosMeArtalkSite : ''}" placeholder="[可选] Artalk 站点名称">
-        <input name="twikoo-path-url" class="memos-twikoo-input border-b input-text col-6 py-2" type="text" value="${memosMeTwikoo ? memosMeTwikoo : ''}" placeholder="[可选]Twikoo 评论网址">
         <input name="cfwkai-url" class="cfwkai-url-input border-b input-text col-6 py-2" type="text" value="${cfwkAiUrl ? cfwkAiUrl : ''}" placeholder="[可选]Cloudflare AI 网址">
         <input name="gemini-key" class="gemini-key-input border-b input-text col-6 py-2" type="text" value="${geminiKey ? geminiKey : ''}" placeholder="[可选]Gemini Pro Key">
         <input name="filter-name" class="filter-name-input border-b input-text col-6 py-2" type="text" value="${filterName ? filterName : ''}" placeholder="[可选]广场过滤名单（ , 分隔多个）">
@@ -211,9 +204,6 @@ var submitMemoBtn = document.querySelector(".submit-memos-btn");
 var memosVisibilitySelect = document.querySelector(".select-memos-value");
 var pathInput = document.querySelector(".memos-path-input");
 var tokenInput = document.querySelector(".memos-token-input");
-var artalkInput = document.querySelector(".memos-artalk-input");
-var artalkSiteInput = document.querySelector(".memos-artalksite-input");
-var twikooInput = document.querySelector(".memos-twikoo-input");
 var cfwkAiUrlInput = document.querySelector(".cfwkai-url-input");
 var geminiKeyInput = document.querySelector(".gemini-key-input");
 var filterNameInput = document.querySelector(".filter-name-input");
@@ -240,7 +230,7 @@ memoDom.insertAdjacentHTML('afterend', load);
 var loadBtn = document.querySelector("button.button-load");
 
 var limit = memosData.limit,page = 1,nums = 0,dataNum = 0,memosContType = 0, memosAccess = 0,randomUser = 0;
-var memoData = [],memosStr = [],memoCreatorMap = {},twikooCount = {},artalkCount = {};
+var memoData = [],memosStr = [],memoCreatorMap = {};
 let memosMode;
 let nowLink;
 let nowId;
@@ -367,95 +357,6 @@ function memoFollow(mode) {
     cocoMessage.success("加载中");
   });
 
-  async function getMemoCount(m) {
-    let twikooData = m.filter(item => item.twikoo);
-    if (twikooData.length !== 0) {
-      let twikooRes = {};
-      for (const { creatorName, twikoo, link, id } of twikooData) {
-        if (!twikooRes[creatorName]) {
-          twikooRes[creatorName] = {
-            creatorName,
-            envId: twikoo,
-            urls: []
-          };
-        }
-        twikooRes[creatorName].urls.push(`${link}/m/${id}`);
-      }
-      let twikooList = Object.values(twikooRes);
-      let twikooPromise = await Promise.all(
-        twikooList.map(async (item) => {
-          try {
-            let res = await twikoo.getCommentsCount({
-              envId: item.envId,
-              urls: item.urls,
-              includeReply: false
-            });
-            return res;
-          } catch (err) {
-            console.error(err);
-            return [];
-          }
-        })
-      );
-      twikooCount = twikooPromise.flatMap(r => r);
-    }
-    let artalkData = m.filter(item => item.artalk);
-    if (artalkData.length !== 0) {
-      let artalkRes = {};
-      for (const { creatorName, artalk, artSite, link, id } of artalkData) {
-        if (!artalkRes[creatorName]) {
-          artalkRes[creatorName] = {
-            creatorName,
-            envId: artalk,
-            site_name: artSite,
-            link,
-            urls: []
-          };
-        }
-        artalkRes[creatorName].urls.push(`/m/${id}`);
-      }
-      let artalkList = Object.values(artalkRes);
-      let artalkPromise = await Promise.all(
-        artalkList.map(async (item) => {
-          try {
-            let pageKeys = item.urls.join(',');
-            let siteName = item.site_name;
-            let response = await fetch(`${item.envId}/api/v2/stats/page_comment?page_keys=${pageKeys}&site_name=${siteName}`);
-            if (!response.ok) {
-              throw new Error(`Request failed`);
-            }
-            let results = await response.json();
-            let countList = item.urls.map(url => {
-              let count = results.data[url] || 0;
-              return { url: item.link + url, count };
-            });
-            return countList;
-          } catch (err) {
-            return []; 
-          }
-        })
-      )
-      artalkCount = artalkPromise.flatMap(r => r);
-    }
-    for (const item of m) {
-      let count = 0;
-      let url = `${item.link}/m/${item.id}`;
-      if (item.twikoo) {
-        let memoCount = twikooCount.find((o) => o.url === url);
-        if (memoCount) {
-          count = memoCount.count;
-        }
-      } else if (item.artalk) {
-        let memoCount = artalkCount.find((o) => o.url === url);
-        if (memoCount) {
-          count = memoCount.count;
-        }
-      }
-      item.count = count;
-    }
-    return m;
-  }
-  this.getMemoCount = getMemoCount;
 
   function updateData(res) {
     let oneDayTag = window.localStorage && window.localStorage.getItem("memos-oneday-tag");
@@ -541,8 +442,6 @@ async function updateHtml(data) {
     let in2Week = Math.floor(new Date().getTime()/ 1000) - createdTs <= 1209600 ? "in2week" : "out2week";
     let memosId = createdTs+memo.id;
     let memosVisibility = memo.visibility
-    let twikooEnv = memo.twikoo;
-    let artalkEnv = memo.artalk;
     let artSite = `${memo.artSite}`;
     let memosLink = memo.link + "/m/" + memo.id;
     let memosRes = memo.content
@@ -554,8 +453,6 @@ async function updateHtml(data) {
       memosRes = marked.parse(memosRes)
       .replace(BILIBILI_REG, `<div class='video-wrapper'><iframe src='//www.bilibili.com/blackboard/html5mobileplayer.html?bvid=$1&as_wide=1&high_quality=1&danmaku=0' scrolling='no' border='0' frameborder='no' framespacing='0' allowfullscreen='true'></iframe></div>`)
       .replace(BILIBILI_REG2, `<div class='video-wrapper'><iframe src='//www.bilibili.com/blackboard/html5mobileplayer.html?bvid=$1&as_wide=1&high_quality=1&danmaku=0' scrolling='no' border='0' frameborder='no' framespacing='0' allowfullscreen='true'></iframe></div>`)
-      .replace(NETEASE_MUSIC_REG, `<meting-js auto='https://music.163.com/#/song?id=$1'></meting-js>`)
-      .replace(QQMUSIC_REG, `<meting-js auto='https://y.qq.com/n/yqq/song$1.html'></meting-js>`)
       .replace(QQVIDEO_REG, `<div class='video-wrapper'><iframe src='//v.qq.com/iframe/player.html?vid=$1' allowFullScreen='true' frameborder='no'></iframe></div>`)
       .replace(YOUKU_REG, `<div class='video-wrapper'><iframe src='https://player.youku.com/embed/$1' frameborder=0 'allowfullscreen'></iframe></div>`)
       .replace(YOUTUBE_REG, `<div class='video-wrapper'><iframe src='https://www.youtube.com/embed/$1' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen title='YouTube Video'></iframe></div>`)
@@ -650,11 +547,7 @@ async function updateHtml(data) {
       itemOption = `<div class="item-option mr-1"><a class="d-flex" href="${memosLink}" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="1.15rem" height="1.15rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m4-3h6v6m-11 5L21 3"></path></svg></a></div>`;
     } 
     itemContent = `<div class="item-content"><div class="item-inner">${memosRes}</div><div class="item-footer d-flex mt-2"><div class="d-flex">${memosTag}</div>`;
-    if (twikooEnv && memosVisibility == "PUBLIC") {
-      itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a data-id="${memo.id}" data-time="${createdTs}" data-env="${twikooEnv}" data-path="${memosLink}" onclick="loadTwikoo(this)" rel="noopener noreferrer" class="d-flex"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2zM8 10h.01M12 10h.01M16 10h.01"/></svg></a><span class="ml-1">${count}</span></div></div></div><div id="${memosId}" class="item-comment mt-3 d-none"></div>`;
-    } else if (artalkEnv && memosVisibility == "PUBLIC") {
-      itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center"><a data-id="${memo.id}" data-time="${createdTs}" data-env="${artalkEnv}" data-path="${artSite}" onclick="loadArtalk(this)" rel="noopener noreferrer" class="d-flex"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2zM8 10h.01M12 10h.01M16 10h.01"/></svg></a><span class="ml-1">${count}</span></div></div></div><div id="${memosId}" class="item-comment mt-3 d-none"></div>`;
-    } else if(memosVisibility !== "PUBLIC"){
+    if(memosVisibility !== "PUBLIC"){
       itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center mr-1" onclick="getUserMemos('${link}','${creatorId}','${creatorName}','${avatar}','','','NOPUBLIC')"><svg xmlns="http://www.w3.org/2000/svg" width="1.15rem" height="1.15rem" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.68 4.206C2.652 6.015 4.67 7.258 7 7.258c2.331 0 4.348-1.243 5.322-3.052M2.75 5.596L.5 7.481m4.916-.415L4.333 9.794m6.917-4.198l2.25 1.885m-4.92-.415l1.083 2.728"/></svg></div></div></div>`;
     } else {
       itemContent += `<div class="d-flex flex-fill justify-content-end"></div></div>`;
@@ -759,43 +652,6 @@ async function getMemos(search) {
   //}, 800);
   goBbsBtn.classList.remove("noclick")
 }
-
-myFeedsBtn.addEventListener('click', function(event) {
-  loadBtn.classList.add('d-none');
-  memoDom.innerHTML = skeleton;
-  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
-  myFeedsBtn.classList.add("current")
-  let fetchUrl = "https://cf.edui.fun/all?rule=created&end=20"
-  fetch(fetchUrl).then(res => res.json()).then(resdata =>{
-    let myFeedData = resdata.article_data
-    var myFeedArticle = '';
-    for (var i = 0;i<myFeedData.length;i++){
-      var item = myFeedData[i];
-      myFeedArticle +=`
-      <div class="card-item flex-fill p-3">
-        <div class="d-flex flex-fill">
-          <div class="item-avatar mr-2" style="background-image:url(${item.avatar})"></div>
-          <div class="item-sub d-flex flex-column p-1">
-            <div class="item-creator"><a href="${item.link}" target="_blank" rel="noopener nofollow" >${item.title}</a></div>
-            <span class="myfeeds-floor">${item.floor}</span>
-            <div class="item-mate mt-2 text-xs">${item.updated}</div>
-          </div>
-        </div>
-      </div>
-      `;
-    }
-    memoDom.innerHTML = `<div class="myfeeds-option row px-2 pb-2">
-      <div class="myfeeds-xml card-item px-3 py-2 mr-3" data-type="bfind" onclick="myFeedsXML(this)">BlogFinder</div>
-      <div class="myfeeds-xml card-item px-3 py-2 mr-3" data-type="jixin"  onclick="myFeedsXML(this)">积薪</div>
-      <div class="myfeeds-xml card-item px-3 py-2 mr-3" data-type="boyou"  onclick="myFeedsXML(this)">博友圈</div>
-      <div class="myfeeds-xml card-item px-3 py-2 mr-3" data-type="shinian"  onclick="myFeedsXML(this)">十年之约</div>
-    </div>
-    <div class="myfeeds">${myFeedArticle}</div>`;
-    window.Lately && Lately.init({
-      target: '.item-mate'
-    });
-  })
-});
 
 function myFeedsXML(e){
   loadBtn.classList.add('d-none');
@@ -1158,8 +1014,6 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
           data.forEach(item => {
             item.avatar = memosMeAvatarUrl
             item.link = memosPath
-            item.twikoo = memosMeTwikoo
-            item.artalk = memosMeArtalk
             item.artSite = `${memosMeArtalkSite}`
           });
           if (mode == "NOPUBLIC") {
@@ -1229,7 +1083,7 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
 async function fetchNeoDB(url,mode){
   let urlNow;
   if(mode == "douban"){
-    urlNow = "https://api-neodb.immmmm.com/?url="+url
+    urlNow = "https://db.lzsay.com/?url="+url
   }else if(mode = "neodb"){
 
     console.log(url)
@@ -1264,60 +1118,6 @@ function getTagNow(u,i,n,a,e){
   getUserMemos(u,i,n,a,tagName);
 }
 
-// 加载Twikoo评论
-function loadTwikoo(i) {
-  let twikooEnv = i.getAttribute("data-env")
-  let twikooPath = i.getAttribute("data-path")
-  let twikooId = i.getAttribute("data-id")
-  let twikooTime = i.getAttribute("data-time")
-  let twikooDom = document.getElementById(`${Number(twikooTime)+Number(twikooId)}`);
-  let twikooCon = "<div id='twikoo'></div>"
-  if (twikooDom.classList.contains('d-none')) {
-    document.querySelectorAll('.item-comment').forEach((item) => {item.classList.add('d-none');})
-    if(document.getElementById("twikoo")){
-      document.getElementById("twikoo").remove()
-    }
-    twikooDom.insertAdjacentHTML('beforeend', twikooCon);
-    twikooDom.classList.remove('d-none');
-    twikoo.init({
-      envId: twikooEnv,
-      el: '#twikoo', 
-      path: twikooPath 
-    });
-  }else{
-    twikooDom.classList.add('d-none');
-    document.getElementById("twikoo").remove()
-  }
-}
-
-// 加载Artalk评论
-function loadArtalk(e) {
-  let artalkEnv = e.getAttribute("data-env")
-  let artalkPath= e.getAttribute("data-path")
-  let artalkId = e.getAttribute("data-id")
-  let artalkTime = e.getAttribute("data-time")
-  let artalkDom = document.getElementById(`${Number(artalkTime) + Number(artalkId)}`);
-  let artalkCon = "<div id='artalk'></div>"
-  if (artalkDom.classList.contains('d-none')) {
-    document.querySelectorAll('.item-comment').forEach((item) => {item.classList.add('d-none');})
-    if(document.getElementById("artalk")){
-      document.getElementById("artalk").remove()
-    }
-    artalkDom.insertAdjacentHTML('beforeend', artalkCon);
-    artalkDom.classList.remove('d-none');
-    Artalk.init({
-      el: '#artalk',
-      pageKey: '/m/' + artalkId,
-      pageTitle: '',
-      site: artalkPath,
-      server: artalkEnv,
-      emoticons: false
-    });
-  }else{
-    artalkDom.classList.add('d-none');
-    document.getElementById("artalk").remove()
-  }
-}
 //收藏
 function saveMemo(memo) {
     let e = JSON.parse(memo.getAttribute("data-form"));
@@ -1838,9 +1638,6 @@ function getEditIcon() {
         pathInputValue = pathInputValue.substr(0, pathInputValue.length - 1);
       }
       getMemosData(pathInputValue,tokenInput.value);
-      if(artalkInput.value !== null || artalkInput.value !== '') window.localStorage && window.localStorage.setItem("memos-artalk-input", artalkInput.value);
-      if(artalkSiteInput.value !== null || artalkSiteInput.value !== '') window.localStorage && window.localStorage.setItem("memos-artalksite-input", artalkSiteInput.value);
-      if(twikooInput.value !== null || twikooInput.value !== '') window.localStorage && window.localStorage.setItem("memos-twikoo-input", twikooInput.value);
       if(cfwkAiUrlInput.value !== null || cfwkAiUrlInput.value !== '') window.localStorage && window.localStorage.setItem("memos-cfwkai-url", cfwkAiUrlInput.value);
       if(geminiKeyInput.value !== null || geminiKeyInput.value !== '') window.localStorage && window.localStorage.setItem("memos-gemini-key", geminiKeyInput.value);
       if(filterNameInput.value !== null || filterNameInput.value !== '') window.localStorage && window.localStorage.setItem("memos-filter-name", filterNameInput.value);
@@ -2086,56 +1883,6 @@ function clearTextarea(mode){
   if(memosMode != "cancel"){
     getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",memosMode)
   }
-}
-// 获取 owo.json 文件中的数据
-let emojiSelectorVisible = false;
-let emojiSelector;
-let emojis = [{"icon": "😂","text": "哭笑不得"},{"icon": "😎","text": "酷"},{"icon": "😏","text": "坏笑"},{"icon": "😅","text": "流汗"},{"icon": "😄","text": "笑"},{"icon": "😜","text": "调皮"},{"icon": "🤣","text": "笑倒"},{"icon": "😭","text": "大哭"},{"icon": "🙄","text": "白眼"},{"icon": "🤐","text": "嘘"},{"icon": "😋","text": "美食脸"},{"icon": "🥶","text": "冰冻"},{"icon": "🥵","text": "热"},{"icon": "😴","text": "睡觉"},{"icon": "🤧","text": "打喷嚏"},{"icon": "🍉","text": "西瓜"},{"icon": "😱","text": "惊恐"},{"icon": "👋","text": "招手"},{"icon": "🔨","text": "锤子"},{"icon": "🐶","text": "小狗"},{"icon": "👏","text": "鼓掌"},{"icon": "🙈","text": "不看"},{"icon": "😓","text": "汗"},{"icon": "😍","text": "爱心眼"},{"icon": "🤝","text": "握手"},{"icon": "🥺","text": "求你"},{"icon": "😔","text": "沮丧"},{"icon": "😪","text": "困"},{"icon": "😕","text": "困惑"},{"icon": "🤷‍♂️","text": "摊手"},{"icon": "😛","text": "舌头"},{"icon": "🤭","text": "偷笑"},{"icon": "🤮","text": "呕吐"},{"icon": "🥺","text": "求你"},{"icon": "🙂","text": "轻松的笑"},{"icon": "😈","text": "恶魔"},{"icon": "😃","text": "笑脸"},{"icon": "🤫","text": "嘘"},{"icon": "😒","text": "无语"},{"icon": "😵","text": "晕"},{"icon": "💪","text": "加油"},{"icon": "👍","text": "赞"},{"icon": "👎",  "text": "踩"},{"icon": "😡","text": "愤怒"},{"icon": "🤬","text": "怒骂"},{"icon": "😖","text": "心烦"},{"icon": "🌹","text": "玫瑰"},{"icon": "🏃","text": "跑步"},{"icon": "😆","text": "大笑"},{"icon": "💵","text": "钞票"},{"icon": "😘","text": "飞吻"},{"icon": "😷","text": "生病"},{"icon": "🤕","text": "受伤"},{"icon": "🎉","text": "庆祝"},{"icon": "❤️","text": "红心"},{"icon": "💔","text": "心碎"},{"icon": "😣","text": "无奈"},{"icon": "😘","text": "飞吻"},{"icon": "💩","text": "一坨便便"},{"icon": "🤩","text": "爱慕"}];
-
-// 表情选择器点击事件处理
-biaoqingBtn.addEventListener("click", function (event) {
-  event.stopPropagation();
-  emojiSelectorVisible = !emojiSelectorVisible;
-  if (emojiSelectorVisible) {
-    displayEmojiSelector();
-  } else {
-    emojiSelector?.remove();
-  }
-});
-// 显示表情选择器
-function displayEmojiSelector() {
-  if (!emojiSelector) {
-    emojiSelector = document.createElement('div');
-    emojiSelector.classList.add('emoji-selector');
-    emojiSelector.addEventListener('click', (event) => {
-      const target = event.target;
-      if (target.classList.contains('emoji-item')) {
-        insertEmoji(target.innerHTML);
-      }
-    });
-  }
-  emojiSelector.innerHTML = '';
-  emojis.forEach(emoji => {
-    const emojiItem = document.createElement('div');
-    emojiItem.classList.add('emoji-item');
-    emojiItem.innerHTML = emoji.icon;
-    emojiItem.title = emoji.text;
-    emojiSelector.appendChild(emojiItem);
-  });
-  const memosEditorTools = document.querySelector(".memos-editor-tools");
-  if (memosEditorTools) {
-    memosEditorTools.insertAdjacentElement('afterend', emojiSelector);
-  }
-}
-// 表情光标位置
-function insertEmoji(emojiText) {
-  const selectionStart = memosTextarea.selectionStart;
-  const newValue = `${memosTextarea.value.substring(0, selectionStart)}${emojiText}${memosTextarea.value.substring(memosTextarea.selectionEnd)}`;
-  memosTextarea.value = newValue;
-  memosTextarea.dispatchEvent(new Event('input'));
-  const newCursorPosition = selectionStart + emojiText.length;
-  memosTextarea.setSelectionRange(newCursorPosition, newCursorPosition);
-  memosTextarea.focus();
 }
 
 // 回到顶部

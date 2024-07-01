@@ -110,51 +110,5 @@ function loadAlbum(albumData,limit){
         //相对时间
         window.Lately && Lately.init({ target: '.photo-time'});
 }
-//有圈
-var friendDom = document.querySelector('#friArticle') || ''
-if(friendDom){MyFriends();}
-function MyFriends(){
-  var fetchNum = 20;
-  var fetchUrl = "https://cf.edui.fun/all?rule=created&end="+fetchNum;
-  var localfriendUpdated = localStorage.getItem("friendUpdated") || ''
-  var localfriendData = JSON.parse(localStorage.getItem("friendData")) || '';
-  if(localfriendData && localfriendUpdated){
-    loadFriend(localfriendData,fetchNum)
-    console.log("MyFriends 本地数据加载成功")
-  }else{
-    localStorage.setItem("friendUpdated","")
-  }
-  fetch(fetchUrl).then(res => res.json()).then(resdata =>{
-    var friendUpdated = resdata.statistical_data.last_updated_time
-    if(friendUpdated && localfriendUpdated != friendUpdated){
-      var friendData = resdata.article_data;
-      friendDom.innerHTML = "";
-      loadFriend(friendData,fetchNum)
-      localStorage.setItem("friendUpdated",friendUpdated)
-      localStorage.setItem("friendData",JSON.stringify(friendData))
-      console.log("MyFriends 热更新完成")
-    }else{
-      console.log("MyFriends API 数据未更新")
-    }
-  })
-}
-function loadFriend(friendData,fetchNum){
-  var error_img="https://gravatar.loli.net/avatar/57d8260dfb55501c37dde588e7c3852c",articleItem = '';
-  for (var i = 0;i<fetchNum;i++){
-    var item = friendData[i];
-    articleItem +=`
-    <div class="fri-item">
-      <img class="fri-avatar avatar" src="${item.avatar}" alt="${item.author}" onerror="this.src='${error_img}';this.onerror = null;">
-      <div class="fri-cont">
-        <div class="fri-title"><a target="_blank" rel="noopener nofollow" href="${item.link}">${item.title}</a></div>
-        <div class="fri-updated">${item.updated}</div>
-      </div>
-    </div>
-    `;
-  }
-  friendDom.innerHTML = articleItem
-  //相对时间
-  window.Lately && Lately.init({ target: '.fri-updated'});
-}
 
 });
