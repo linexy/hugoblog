@@ -1014,7 +1014,6 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
           data.forEach(item => {
             item.avatar = memosMeAvatarUrl
             item.link = memosPath
-            item.artSite = `${memosMeArtalkSite}`
           });
           if (mode == "NOPUBLIC") {
             memosCount = data.length;
