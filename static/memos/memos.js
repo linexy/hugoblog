@@ -16,7 +16,7 @@ var memoDefaultList = [
     "website": "https://lzsay.com",
     "link": "https://memos.lzsay.com",
     "creatorId": "1",
-    "avatar": "https://gravatar.memobbs.app/avatar/ba83fa02fc4b2ba621514941307e21be?s=80",
+    "avatar": "https://img.lzsay.com/lzsay-img/2024/06/638c24ae6ab4f9a89c1d5fd29f7df84e.png",
   }
 ];
 
