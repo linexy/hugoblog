@@ -642,7 +642,6 @@ buttom.cancel-edit-btn{margin-left:-1rem;}
 .dark .db-card{background:#252627;}
 /* db-card -------- end */
 
-.user-now .row-fill{display:flex;align-items:center;margin-left:auto;}
 .user-now .row-fill .iconfont,.load-memos-editor .iconfont{font-size: 1.25rem;}
 .user-now.row{margin-right:0;margin-left:0;}
 .user-now.card-item{overflow:unset;height:3.5rem;}
