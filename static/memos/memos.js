@@ -301,7 +301,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   nowId = memosMeID || memoList[0].creatorId;
   nowName = memosMeNickname || memoList[0].creatorName;
   nowAvatar = memosMeAvatarUrl || memoList[0].avatar;
-  memoFollow(getMode);
+  memoFollow();
   getEditIcon();
 });
 
@@ -331,7 +331,7 @@ function memoFollow(mode) {
     //goBbsBtn.classList.add("current")
     getMemos();
   }else if(mode == "RANDUSER"){
-    randomUserBtn.classList.add("current")
+  //  randomUserBtn.classList.add("current")
     goRandUser()
   }else if(mode == "NOPUBLIC"){
     getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
@@ -806,10 +806,9 @@ function reloadUser(mode){
 }
 
 // 获取指定用户列表
-async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
+async function getUserMemos(link,id,name,avatar,tag,search,mode) {
     memoDom.innerHTML = skeleton;
     loadBtn.classList.add('d-none');
-    randomUserBtn.classList.add("noclick")
     memoData = [],memoCreatorMap = {}, page = 1,nums = 0,dataNum = 0,memosContType = 1;
     memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
     let usernowName = document.querySelector(".user-now-name");
@@ -922,8 +921,8 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
         }
     }
     setTimeout(function() {
-      goHomeBtn.classList.remove("noclick")
-      randomUserBtn.classList.remove("noclick")
+    //  goHomeBtn.classList.remove("noclick")
+    //  randomUserBtn.classList.remove("noclick")
     }, 800);
     window.scrollTo({
       top: usernowDom.offsetTop - 30,
