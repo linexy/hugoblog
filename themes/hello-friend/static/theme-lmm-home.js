@@ -100,8 +100,7 @@ function loadAlbum(albumData,limit){
         if(albumDom){
           albumDom.innerHTML = resultAll
         }
-        //相对时间
-        window.Lately && Lately.init({ target: '.photo-time'});
-}
-
-});
+      }
+    }
+  }
+);
