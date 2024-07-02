@@ -328,7 +328,7 @@ function memoFollow(mode) {
     goHomeBtn.classList.add("current")
     getUserMemos(nowLink,nowId,nowName,nowAvatar,"","","MEMOSHOME")
   }else if(mode == "MEMOSBBS"){
-    goBbsBtn.classList.add("current")
+    //goBbsBtn.classList.add("current")
     getMemos();
   }else if(mode == "RANDUSER"){
     randomUserBtn.classList.add("current")
@@ -642,7 +642,7 @@ async function getMemos(search) {
       behavior: "smooth"
     });
   //}, 800);
-  goBbsBtn.classList.remove("noclick")
+  //goBbsBtn.classList.remove("noclick")
 }
 
 //标签筛选且输入框为空，自动插入标签
@@ -726,7 +726,7 @@ function searchNow(serchText){
 }); */
 
 //返回个人主页
-function goHome(){
+/* function goHome(){
   goHomeBtn.classList.add("noclick")
   usernowBtnDom.forEach((item) => {item.classList.remove('current');})
   goHomeBtn.classList.add("current")
@@ -734,7 +734,7 @@ function goHome(){
   randomUser = 0;
   getUserMemos(nowLink,nowId,nowName,nowAvatar)
   cocoMessage.success("Hi， "+nowName);
-};
+}; */
 
 //切换为广场模式
 function goBbs(){
@@ -770,7 +770,7 @@ randomUserBtn.addEventListener("click", function () {
   goRandUser()
 }); */
 //随机个人
-function goRandUser(){
+/* function goRandUser(){
   randomUser = 1;
   usernowBtnDom.forEach((item) => {item.classList.remove('current');})
   randomUserBtn.classList.add("current")
@@ -782,7 +782,7 @@ function goRandUser(){
   let userNowData = memoList[randomIndex]
   getUserMemos(userNowData.link,userNowData.creatorId,userNowData.creatorName,userNowData.avatar,"","")
   cocoMessage.success(userNowData.creatorName+" 上线～");
-}
+} */
 
 //重载当前 user
 function reloadUser(mode){
