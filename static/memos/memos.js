@@ -221,72 +221,8 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // 获取自定义列表
-  if(typeof memosJson !== 'undefined'){
-    try {
-      memoOurList = await getMemoListData(memosJson.url); // 获取自定义列表
-    } catch (error) {
-      memoOurList = memoDefaultList
-    }
-  }else{
-    try {
-      memoOurList = await getMemoListData("../memos/memos.json"); // 获取自定义列表
-    } catch (error) {
-      memoOurList = memoDefaultList
-    }
-  }
-  if(typeof memosMyList !== 'undefined'){
-    const mergedArray = [...memosMyList, ...memoOurList];
-    memoList = mergedArray.filter((item, index) => {
-      const stringifiedItem = JSON.stringify(item);
-      return index === mergedArray.findIndex(obj => {
-        return JSON.stringify(obj) === stringifiedItem;
-      });
-    });
-  }else{
-    memoList = memoOurList
-  }
-
-  //查询当前页面 window.location.origin 作为主页展示
-  let memobbsAdmin = []
-  let memobbsLink = window.location.origin;
-  let linkIndex = memoList.findIndex(item => (item.website == memobbsLink))
-  if(linkIndex >= 0){
-    memobbsAdmin.push(memoList[linkIndex])
-    const mergedArray2 = [...memobbsAdmin, ...memoList];
-    memoList = mergedArray2.filter((item, index) => {
-      const stringifiedItem = JSON.stringify(item);
-      return index === mergedArray2.findIndex(obj => {
-        return JSON.stringify(obj) === stringifiedItem;
-      });
-    });
-  }
-
-  nowLink = memosPath || memoList[0].link;
-  nowId = memosMeID || memoList[0].creatorId;
-  nowName = memosMeNickname || memoList[0].creatorName;
-  nowAvatar = memosMeAvatarUrl || memoList[0].avatar;
-  getEditIcon();
-});
-
-// 获取自定义 memos.json 订阅列表
-async function getMemoListData(url) {
-  const response = await fetch(url);
-  const data = await response.json();
-  if(filterName){
-    let namesToRemove = filterName.replace(/，/g, ",").split(',');
-    for (let name of namesToRemove) {
-    let nameIndex = data.myMemoList.findIndex(item => (item.creatorName == name));
-      if (nameIndex !== -1) {
-        delete data.myMemoList.splice(nameIndex, 1);
-      }
-    };
-  }
-  return data.myMemoList
-}
-
-
-  function updateData(res) {
+  
+   function updateData(res) {
     let oneDayTag = window.localStorage && window.localStorage.getItem("memos-oneday-tag");
     if(oneDayTag !== null){
       const firstItem = res.slice(0, 1);
