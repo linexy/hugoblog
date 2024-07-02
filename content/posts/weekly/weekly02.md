@@ -5,10 +5,8 @@ tags:
   - 周报
 feature: https://img.lzsay.com/lzsay-img/2024/07/27a8bca7992a7cf48ee78ef60d4f079d.png
 ---
-![image.png](https://img.lzsay.com/lzsay-img/2024/07/27a8bca7992a7cf48ee78ef60d4f079d.png)
 
-
->>演讲之妙并不在于大臣说真话，而在于没人证明他说谎。 
+> 演讲之妙并不在于大臣说真话，而在于没人证明他说谎。 
 
 这两周工作忙得飞起，写博客的轮子刚转起来就要停了，慢一点没关系，要持续前行。
 <!--more-->

@@ -5,9 +5,7 @@ tags:
   - 周报
 feature: https://img.lzsay.com/lzsay-img/2024/07/e21aec0d82f61bddb1cd7c232315b435.png
 ---
-![image.png](https://img.lzsay.com/lzsay-img/2024/07/e21aec0d82f61bddb1cd7c232315b435.png)
-
-—政府不追求道德！
+>  —政府不追求道德！
 >  —是吗？那追求什么？
 >  —稳定、社会正常运转、预防混乱、制止分裂、屹立不倒。
 >  —如果政府不行善，那它的目的是什么？
