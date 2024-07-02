@@ -21,9 +21,13 @@ var memoDefaultList = [
 ];
 
 var userNow = `
-<div class="user-now card-item flex-fill mb-3 row">
+<div class="user-now card-item2 flex-fill mb-3 row">
   <div class="call-memos-editor item-avatar p-3 "><img class="user-now-avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/ style="pointer-events: none;"></div>
   <span class="user-now-name"></span>
+    <div class="row-fill">
+
+    </div>
+  </div>
 </div>`
 memosDom.insertAdjacentHTML('beforebegin', userNow);
 
