@@ -266,7 +266,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   nowId = memosMeID || memoList[0].creatorId;
   nowName = memosMeNickname || memoList[0].creatorName;
   nowAvatar = memosMeAvatarUrl || memoList[0].avatar;
-  memoFollow(getMode);
   getEditIcon();
 });
 
@@ -285,35 +284,6 @@ async function getMemoListData(url) {
   }
   return data.myMemoList
 }
-
-function memoFollow(mode) {
-  //记忆显示模式
-  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
-  if(mode == "MEMOSHOME"){
-    goHomeBtn.classList.add("current")
-    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","","MEMOSHOME")
-  }else if(mode == "MEMOSBBS"){
-    goBbsBtn.classList.add("current")
-    getMemos();
-  }else if(mode == "RANDUSER"){
-    randomUserBtn.classList.add("current")
-    goRandUser()
-  }else if(mode == "NOPUBLIC"){
-    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
-  }else if(mode == "oneday"){
-    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
-  }else{
-    goHomeBtn.classList.add("current")
-    getUserMemos(nowLink,nowId,nowName,nowAvatar)
-  }
-
-  loadBtn.addEventListener("click", function () {
-    if(page < dataNum) {
-      page++;
-    }
-    updateData(memoData)
-    cocoMessage.success("加载中");
-  });
 
 
   function updateData(res) {
@@ -618,28 +588,6 @@ memosTextarea.addEventListener('focus', function(event) {
   }
 });
 
-//搜索 Memo
-searchBtn.addEventListener("click", function () {
-  if(searchInput.classList.contains("d-none")){
-    userButton.classList.add("d-none")
-    searchInput.classList.remove("d-none")
-    searchInput.focus();
-  }else if(!searchInput.classList.contains("d-none") && searchInput.value == ""){
-    searchInput.classList.add("animate__fadeOutRight")
-    setTimeout(function() {
-      userButton.classList.remove("d-none")
-      searchInput.classList.add("d-none")
-      searchInput.classList.remove("animate__fadeOutRight")
-    }, 500);
-  }else if(searchInput.value !== ""){
-    searchNow(searchInput.value)
-  }
-  searchInput.addEventListener('keydown', function(event) {
-    if (event.key === 'Enter') {
-      searchNow(searchInput.value)
-    }
-  });
-});
 
 function searchNow(serchText){
   if(serchText !== ""){
@@ -774,7 +722,6 @@ function reloadUser(mode){
 async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
     memoDom.innerHTML = skeleton;
     loadBtn.classList.add('d-none');
-    randomUserBtn.classList.add("noclick")
     memoData = [],memoCreatorMap = {}, page = 1,nums = 0,dataNum = 0,memosContType = 1;
     memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
     let usernowName = document.querySelector(".user-now-name");
@@ -784,23 +731,6 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
     if (link == memosPath) {
       memosAccess = 1;
     };
-    let userMemoUrl;
-    if(tag && (random == null || random == "" )){
-      userMemoUrl = `${link}/api/v1/memo?creatorId=${id}&tag=${tag}&rowStatus=NORMAL&limit=50`;
-    }else if(search){
-      userMemoUrl = `${link}/api/v1/memo?creatorId=${id}&content=${search}&rowStatus=NORMAL&limit=${limit}`;
-    }else if(mode == "NOPUBLIC"){
-      userMemoUrl = `${link}/api/v1/memo`;
-    }else if(random){
-      if(tag){
-        userMemoUrl = `${link}/api/v1/memo?tag=${tag}&limit=1&offset=${random}`;
-      }else{
-        userMemoUrl = `${link}/api/v1/memo?&limit=1&offset=${random}`;
-      }
-    }else{
-      userMemoUrl = `${link}/api/v1/memo?creatorId=${id}&rowStatus=NORMAL&limit=50`;
-    }
-
     if (link == memosPath) {
       try {
         let response = await fetch(userMemoUrl,{
