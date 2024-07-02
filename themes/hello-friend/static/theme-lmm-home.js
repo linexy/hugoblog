@@ -21,13 +21,6 @@ fetch(bbUrl).then(res => res.json()).then( resdata =>{
     //相对时间
     window.Lately && Lately.init({ target: '.datetime' });
 });
-setInterval(function() {
-    for (var s, n = document.querySelector(".talk-list"), e = n.querySelectorAll(".item"), t = 0; t < e.length; t++)
-    setTimeout(function() {
-      n.appendChild(e[0])
-    },1000)
-},2000)
-}
 //memos 相册
 var albumDom = document.querySelector('#album') || '';
 var memoUrl = "https://memos.lzsay.com/"

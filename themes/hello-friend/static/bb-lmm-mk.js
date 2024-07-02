@@ -2,7 +2,7 @@
 Last Modified time : 20230926 11:00 by https://immmmm.com
 */
 let bbMemo = {
-  memos: 'https://demo.usememos.com/',
+  memos: 'https://memos.lzsay.com/',
   limit: '10',
   creatorId: '1',
   domId: '#bber',
