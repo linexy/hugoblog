@@ -91,7 +91,7 @@ function bookShow(fetch_href, fetch_item) {
   db_div.innerHTML = db_html
 }
 function umiTongji(){
-  var umiId = "41e2b680-648e-4b09-bcd7-3e2b10c06264"
+  var umiId = "06f41c37-d97a-45a0-bc36-537aa58e81aa"
   var umiToken = "CjXaf6YbcrVAoE6MLAR1w8DOjUzH4aLA+DaBa34aW92ok4kjm7GbCVdj4eHB3HcpYzFsgdAjzuBgm9b1MiGFUzMfXwO47zBbrGTUb4V1MEB1ygNgEsoDIrNp6bNQDLg+1rtbpphBwlx3Qi4cEjl0O2sCSBmJDBaifZb8zJIRXdqXc+k8SOlg//45dfByKHsGDmu4hN5tr4bQcLbHux0QEK4FzRvp3lnskfQBRMUA3pALZpN4SeYinJwLA+35T0CBxEV6vVEx529CzcD95VN/3b8BCoCJ6RT/7NNNGQm3F+j5PS6IPGwtfMi74/qcOdWNQ03bSEmCmAgFpuCtMrLmDnkUe/J00lri+A=="
   var umiTime = Date.parse(new Date()); //获取当前时间戳
   var umiUrl = "https://u.lzsay.com/api/websites/"+umiId+"/stats?startAt=0000000000&endAt="+umiTime;
