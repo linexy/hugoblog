@@ -22,7 +22,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 [menu]
   [[menu.main]]
   name="日常"
-  url="/bbs/"
+  url="/bb-back/"
   weight="1"
   [[menu.main]]
   name="好物"
