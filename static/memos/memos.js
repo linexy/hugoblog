@@ -330,6 +330,7 @@ function memoFollow(mode) {
     updateData(memoData)
     cocoMessage.success("加载中");
   });
+}
 
 
 function memoFollow(mode) {
