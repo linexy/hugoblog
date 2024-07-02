@@ -416,6 +416,14 @@ blockquote {
 	transition: all .6s ease-out;
 }
 
+.card-item2 {
+	position: relative;
+	overflow: hidden;
+	border-radius: .33rem;
+	cursor: default;
+	transition: all .6s ease-out;
+}
+
 .card-item:hover {
 	background-color: var(--light-background-hover);
 }
