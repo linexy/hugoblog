@@ -91,8 +91,8 @@ function bookShow(fetch_href, fetch_item) {
   db_div.innerHTML = db_html
 }
 function umiTongji(){
-  var umiId = "c27bd84b-02a3-4c3f-a168-0d7fadec9c74"
-  var umiToken = "o7UpYT1CFrJwL0lmIOY2IzKz23jJdQ3S/gVJJwlK9a+rNtJjXB/7sfEEKXfODAGTXe+d0/wE0tjib+iOZ1eo864qvspZBnt0bzO1edvhnHI6pZ7STLG/8OqJFoJEez0zUvme0XdkYHS+arEptgK0WXijkB2xmfEtD/2lfR5aLwY4QOjmCN+ADzt9TVdNV+bKfirH2s8fKvzcQEKxUCqXxDNMHPzRrHwyEGqv0GZ8CwQqTqL5hdfGsApq9p5XX19X4eaurjFFeBBAjPXu51stmCc82iBkqNhB6y7qT6xHdONqmoaz85gKVPgt/KAaNNIrx+ydW87DbmRi3XTJqj8J4bkgDcLqiV6Mc9UoWZCwf+UUvOtkY6vWwBCRV4Zd4YuFNiUNfw6izIg1Psj+Jjyej4w2oKABSVdrEWLFAL6bhkMzSQLlsl2imzfPMdw="
+  var umiId = "41e2b680-648e-4b09-bcd7-3e2b10c06264"
+  var umiToken = "CjXaf6YbcrVAoE6MLAR1w8DOjUzH4aLA+DaBa34aW92ok4kjm7GbCVdj4eHB3HcpYzFsgdAjzuBgm9b1MiGFUzMfXwO47zBbrGTUb4V1MEB1ygNgEsoDIrNp6bNQDLg+1rtbpphBwlx3Qi4cEjl0O2sCSBmJDBaifZb8zJIRXdqXc+k8SOlg//45dfByKHsGDmu4hN5tr4bQcLbHux0QEK4FzRvp3lnskfQBRMUA3pALZpN4SeYinJwLA+35T0CBxEV6vVEx529CzcD95VN/3b8BCoCJ6RT/7NNNGQm3F+j5PS6IPGwtfMi74/qcOdWNQ03bSEmCmAgFpuCtMrLmDnkUe/J00lri+A=="
   var umiTime = Date.parse(new Date()); //获取当前时间戳
   var umiUrl = "https://u.lzsay.com/api/websites/"+umiId+"/stats?start_at=0000000000&end_at="+umiTime;
   fetch(umiUrl,{
