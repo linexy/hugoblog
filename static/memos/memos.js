@@ -25,7 +25,11 @@ var userNow = `
   <div class="call-memos-editor item-avatar p-3 "><img class="user-now-avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/ style="pointer-events: none;"></div>
   <span class="user-now-name"></span>
     <div class="row-fill">
-
+    <input class="search-memos-input border-b input-text py-2 animate__animated animate__fadeIn animate__fadeInRight d-none" type="text" placeholder="想搜点啥？" id="">
+    <span class="search-memos-btn button d-md-flex p-2 mr-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="1.15rem" height="1.15rem" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21l-4.3-4.3"/></g></svg>
+    </span>
+    <div class="user-button-span row-fill">
     </div>
   </div>
 </div>`
