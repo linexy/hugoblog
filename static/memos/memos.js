@@ -220,15 +220,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-themeTogglebtn.addEventListener('click', function() {
-  if(!document.body.classList.contains("dark")){
-    document.body.classList.add("dark-theme","dark");
-    window.localStorage && window.localStorage.setItem("theme","dark");
-  }else{
-    document.body.classList.remove("dark-theme","dark");
-    window.localStorage && window.localStorage.setItem("theme","light");
-  }
-});
 
 document.addEventListener("DOMContentLoaded", async () => {
   // 获取自定义列表
