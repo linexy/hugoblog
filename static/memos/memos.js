@@ -149,6 +149,8 @@ var memosEditorCont = `
 </div>`;
 memosDom.insertAdjacentHTML('afterbegin',memosEditorCont);
 
+var themeTogglebtn = document.querySelector(".memos-theme-toggle");
+var myFeedsBtn = document.querySelector(".my-blog-feeds");
 var memosEditorInner = document.querySelector(".memos-editor-inner"); 
 var memosEditorOption = document.querySelector(".memos-editor-option");
 var memosRadomCont = document.querySelector(".memos-random");
@@ -167,8 +169,10 @@ var userButton = document.querySelector('.user-button-span');
 var privateBtn = document.querySelector(".private-btn");
 var switchUserBtn = document.querySelector(".switchUser-btn");
 var loadEditorBtn = document.querySelector(".call-memos-editor");
+var searchBtn = document.querySelector(".search-memos-btn");
 var searchInput = document.querySelector(".search-memos-input");
 var userlistBtn = document.querySelector(".userlist-memos");
+var randomUserBtn = document.querySelector(".randomuser-memos");
 var submitApiBtn = document.querySelector(".submit-openapi-btn");
 var submitMemoBtn = document.querySelector(".submit-memos-btn");
 var memosVisibilitySelect = document.querySelector(".select-memos-value");
@@ -189,6 +193,8 @@ var cancelEditBtn = document.querySelector(".cancel-edit-btn");
 var biaoqingBtn = document.querySelector(".biao-qing-btn");
 var usernowDom = document.querySelector(".user-now");
 var usernowBtnDom = document.querySelectorAll(".user-now .button");
+var goHomeBtn = document.querySelector('.gohome-memos')
+var goBbsBtn = document.querySelector('.gobbs-memos')
 
 var memoDom = document.querySelector(memosData.listDom);
 var skeleton = `<div class="el-loading"><div class="el-skeleton mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton width-50 mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton width-50 mb-3"></div></div>`;
@@ -220,6 +226,15 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+themeTogglebtn.addEventListener('click', function() {
+  if(!document.body.classList.contains("dark")){
+    document.body.classList.add("dark-theme","dark");
+    window.localStorage && window.localStorage.setItem("theme","dark");
+  }else{
+    document.body.classList.remove("dark-theme","dark");
+    window.localStorage && window.localStorage.setItem("theme","light");
+  }
+});
 
 document.addEventListener("DOMContentLoaded", async () => {
   // 获取自定义列表
@@ -267,6 +282,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   nowId = memosMeID || memoList[0].creatorId;
   nowName = memosMeNickname || memoList[0].creatorName;
   nowAvatar = memosMeAvatarUrl || memoList[0].avatar;
+  memoFollow(getMode);
   getEditIcon();
 });
 
@@ -285,6 +301,36 @@ async function getMemoListData(url) {
   }
   return data.myMemoList
 }
+
+function memoFollow(mode) {
+  //记忆显示模式
+  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
+  if(mode == "MEMOSHOME"){
+    goHomeBtn.classList.add("current")
+    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","","MEMOSHOME")
+  }else if(mode == "MEMOSBBS"){
+    goBbsBtn.classList.add("current")
+    getMemos();
+  }else if(mode == "RANDUSER"){
+    randomUserBtn.classList.add("current")
+    goRandUser()
+  }else if(mode == "NOPUBLIC"){
+    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
+  }else if(mode == "oneday"){
+    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
+  }else{
+    goHomeBtn.classList.add("current")
+    getUserMemos(nowLink,nowId,nowName,nowAvatar)
+  }
+
+  loadBtn.addEventListener("click", function () {
+    if(page < dataNum) {
+      page++;
+    }
+    updateData(memoData)
+    cocoMessage.success("加载中");
+  });
+
 
   function updateData(res) {
     let oneDayTag = window.localStorage && window.localStorage.getItem("memos-oneday-tag");
@@ -326,7 +372,9 @@ async function getMemoListData(url) {
       memosStr.push(data[i])
     };
     updateHtml(memosStr);
-  };
+  }
+
+};
 
 // 插入 html 
 async function updateHtml(data) {
@@ -586,6 +634,137 @@ memosTextarea.addEventListener('focus', function(event) {
   }
 });
 
+//搜索 Memo
+searchBtn.addEventListener("click", function () {
+  if(searchInput.classList.contains("d-none")){
+    userButton.classList.add("d-none")
+    searchInput.classList.remove("d-none")
+    searchInput.focus();
+  }else if(!searchInput.classList.contains("d-none") && searchInput.value == ""){
+    searchInput.classList.add("animate__fadeOutRight")
+    setTimeout(function() {
+      userButton.classList.remove("d-none")
+      searchInput.classList.add("d-none")
+      searchInput.classList.remove("animate__fadeOutRight")
+    }, 500);
+  }else if(searchInput.value !== ""){
+    searchNow(searchInput.value)
+  }
+  searchInput.addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+      searchNow(searchInput.value)
+    }
+  });
+});
+
+function searchNow(serchText){
+  if(serchText !== ""){
+    let tagnowHas = document.querySelector(".memos-tagnow")
+    if(tagnowHas) tagnowHas.remove();
+    let usernowName = document.querySelector(".user-now-name").innerHTML;
+    let serchDom = `
+      <div class="memos-tagnow row p-2 mb-2">
+        <div class="memos-tagnow-title mr-3">当前搜索b:</div>
+        <div class="memos-tagnow-name card-item pr-2 pl-2" onclick="reloadUser('search')">${serchText}<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-auto ml-1 opacity-40"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg></div>
+      </div>`
+    memosDom.insertAdjacentHTML('beforebegin', serchDom);
+    if(usernowName == ""){
+      getMemos(serchText)
+    }else{
+      let userNameIndex = memoList.findIndex(item => (item.creatorName == usernowName));
+      if(userNameIndex == -1){
+        getUserMemos(nowLink,nowId,nowName,nowAvatar,"",serchText)
+      }else{
+        let userNowData = memoList[userNameIndex]
+        getUserMemos(userNowData.link,userNowData.creatorId,userNowData.creatorName,userNowData.avatar,"",serchText)
+      }
+    }
+    searchInput.value = ''
+
+    searchInput.classList.add("animate__fadeOutRight")
+  setTimeout(function() {
+    userButton.classList.remove("d-none")
+    searchInput.classList.add("d-none")
+    searchInput.classList.remove("animate__fadeOutRight")
+  }, 500);
+  }
+}
+
+//显示订阅列表
+userlistBtn.addEventListener("click", function () {
+  let userlistDom = document.querySelector(".userlist");
+  if(userlistDom){
+    userlistDom.remove();
+  }else{
+    let userlistDom = `<div class="userlist card-item d-flex flex-wrap mb-3 animate__animated animate__fadeIn">`;
+    for (var i = 0; i < memoList.length; i++) {
+      let nowMemo = memoList[i]
+      userlistDom += `<div onclick="getUserMemos('${nowMemo.link}', '${nowMemo.creatorId}','${nowMemo.creatorName.replace(/'/g, "’")}','${nowMemo.avatar}')" class="item-avatar" style="background-image:url(${nowMemo.avatar})"></div>`
+    }
+    userlistDom += `</div>`;
+    memosDom.insertAdjacentHTML('beforebegin', userlistDom);
+  }
+});
+
+//返回个人主页
+function goHome(){
+  goHomeBtn.classList.add("noclick")
+  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
+  goHomeBtn.classList.add("current")
+  goBbsBtn.classList.remove("current")
+  randomUser = 0;
+  getUserMemos(nowLink,nowId,nowName,nowAvatar)
+  cocoMessage.success("Hi， "+nowName);
+};
+
+//切换为广场模式
+function goBbs(){
+  goBbsBtn.classList.add("noclick")
+  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
+  goBbsBtn.classList.add("current")
+  goHomeBtn.classList.remove("current")
+  getMemos();
+  let usernowName = document.querySelector(".user-now-name");
+  let usernowAvatar = document.querySelector(".user-now-avatar");
+  usernowName.innerHTML = "";
+  usernowAvatar.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+  //goBbsBtn.classList.remove("noclick")
+  cocoMessage.success("有啥新鲜事儿？");
+};
+
+goHomeBtn.addEventListener("click", function () {
+  window.localStorage && window.localStorage.setItem("memos-mode",  "MEMOSHOME");
+  let tagnowHas = document.querySelector(".memos-tagnow")
+  if(tagnowHas) tagnowHas.remove();
+  goHome();
+});
+goBbsBtn.addEventListener("click", function () {
+  window.localStorage && window.localStorage.setItem("memos-mode",  "MEMOSBBS");
+  let tagnowHas = document.querySelector(".memos-tagnow")
+  if(tagnowHas) tagnowHas.remove();
+  goBbs()
+});
+randomUserBtn.addEventListener("click", function () {
+  window.localStorage && window.localStorage.setItem("memos-mode",  "RANDUSER");
+  let tagnowHas = document.querySelector(".memos-tagnow")
+  if(tagnowHas) tagnowHas.remove();
+  goRandUser()
+});
+//随机个人
+function goRandUser(){
+  randomUser = 1;
+  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
+  randomUserBtn.classList.add("current")
+  let usernowName = document.querySelector(".user-now-name");
+  let usernowAvatar = document.querySelector(".user-now-avatar");
+  usernowName.innerHTML = ""
+  usernowAvatar.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+  let randomIndex = Math.floor(Math.random() * (memoList.length +1));
+  let userNowData = memoList[randomIndex]
+  getUserMemos(userNowData.link,userNowData.creatorId,userNowData.creatorName,userNowData.avatar,"","")
+  cocoMessage.success(userNowData.creatorName+" 上线～");
+}
+
 //重载当前 user
 function reloadUser(mode){
   let tagnowHas = document.querySelector(".memos-tagnow")
@@ -611,6 +790,7 @@ function reloadUser(mode){
 async function getUserMemos(link,id,name,avatar,tag,search,mode,random) {
     memoDom.innerHTML = skeleton;
     loadBtn.classList.add('d-none');
+    randomUserBtn.classList.add("noclick")
     memoData = [],memoCreatorMap = {}, page = 1,nums = 0,dataNum = 0,memosContType = 1;
     memosPath = window.localStorage && window.localStorage.getItem("memos-access-path");
     let usernowName = document.querySelector(".user-now-name");
