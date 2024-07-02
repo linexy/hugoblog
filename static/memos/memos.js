@@ -267,7 +267,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   nowId = memosMeID || memoList[0].creatorId;
   nowName = memosMeNickname || memoList[0].creatorName;
   nowAvatar = memosMeAvatarUrl || memoList[0].avatar;
-  memoFollow(getMode);
   getEditIcon();
 });
 
