@@ -326,9 +326,7 @@ async function getMemoListData(url) {
       memosStr.push(data[i])
     };
     updateHtml(memosStr);
-  }
-
-};
+  };
 
 // 插入 html 
 async function updateHtml(data) {
