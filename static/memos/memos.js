@@ -332,6 +332,36 @@ function memoFollow(mode) {
   });
 
 
+function memoFollow(mode) {
+  //记忆显示模式
+  usernowBtnDom.forEach((item) => {item.classList.remove('current');})
+  if(mode == "MEMOSHOME"){
+    goHomeBtn.classList.add("current")
+    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","","MEMOSHOME")
+  }else if(mode == "MEMOSBBS"){
+    goBbsBtn.classList.add("current")
+    getMemos();
+  }else if(mode == "RANDUSER"){
+    randomUserBtn.classList.add("current")
+    goRandUser()
+  }else if(mode == "NOPUBLIC"){
+    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
+  }else if(mode == "oneday"){
+    getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
+  }else{
+    goHomeBtn.classList.add("current")
+    getUserMemos(nowLink,nowId,nowName,nowAvatar)
+  }
+
+  loadBtn.addEventListener("click", function () {
+    if(page < dataNum) {
+      page++;
+    }
+    updateData(memoData)
+    cocoMessage.success("加载中");
+  });
+
+
   function updateData(res) {
     let oneDayTag = window.localStorage && window.localStorage.getItem("memos-oneday-tag");
     if(oneDayTag !== null){
