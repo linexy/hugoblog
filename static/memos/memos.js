@@ -26,7 +26,21 @@ var userNow = `
   <span class="user-now-name"></span>
   <div class="row-fill">
     <input class="search-memos-input border-b input-text py-2 animate__animated animate__fadeIn animate__fadeInRight d-none" type="text" placeholder="想搜点啥？" id="">
+    <span class="search-memos-btn button d-md-flex p-2 mr-2">
+    </span>
     <div class="user-button-span row-fill">
+    <span class="memos-theme-toggle button d-md-flex p-2 mr-2">
+    </span>
+    <span class="my-blog-feeds button d-md-flex p-2 mr-2">
+    </span>
+    <span class="userlist-memos button d-md-flex p-2 mr-2">
+    </span>
+    <span class="randomuser-memos button d-md-flex p-2 mr-2">
+    </span>
+    <span class="gobbs-memos button d-md-flex p-2 mr-2">
+    </span> 
+    <span class="gohome-memos button d-md-flex p-2 mr-3">
+    </span>
     </div>
   </div>
 </div>`
@@ -154,8 +168,8 @@ var memosEditorCont = `
 </div>`;
 memosDom.insertAdjacentHTML('afterbegin',memosEditorCont);
 
-var themeTogglebtn = document.querySelector(".memos-theme-toggle");
-var myFeedsBtn = document.querySelector(".my-blog-feeds");
+// var themeTogglebtn = document.querySelector(".memos-theme-toggle");
+//var myFeedsBtn = document.querySelector(".my-blog-feeds");
 var memosEditorInner = document.querySelector(".memos-editor-inner"); 
 var memosEditorOption = document.querySelector(".memos-editor-option");
 var memosRadomCont = document.querySelector(".memos-random");
@@ -174,10 +188,10 @@ var userButton = document.querySelector('.user-button-span');
 var privateBtn = document.querySelector(".private-btn");
 var switchUserBtn = document.querySelector(".switchUser-btn");
 var loadEditorBtn = document.querySelector(".call-memos-editor");
-var searchBtn = document.querySelector(".search-memos-btn");
+//var searchBtn = document.querySelector(".search-memos-btn");
 var searchInput = document.querySelector(".search-memos-input");
-var userlistBtn = document.querySelector(".userlist-memos");
-var randomUserBtn = document.querySelector(".randomuser-memos");
+//var userlistBtn = document.querySelector(".userlist-memos");
+//var randomUserBtn = document.querySelector(".randomuser-memos");
 var submitApiBtn = document.querySelector(".submit-openapi-btn");
 var submitMemoBtn = document.querySelector(".submit-memos-btn");
 var memosVisibilitySelect = document.querySelector(".select-memos-value");
@@ -198,8 +212,8 @@ var cancelEditBtn = document.querySelector(".cancel-edit-btn");
 var biaoqingBtn = document.querySelector(".biao-qing-btn");
 var usernowDom = document.querySelector(".user-now");
 var usernowBtnDom = document.querySelectorAll(".user-now .button");
-var goHomeBtn = document.querySelector('.gohome-memos')
-var goBbsBtn = document.querySelector('.gobbs-memos')
+//var goHomeBtn = document.querySelector('.gohome-memos')
+//var goBbsBtn = document.querySelector('.gobbs-memos')
 
 var memoDom = document.querySelector(memosData.listDom);
 var skeleton = `<div class="el-loading"><div class="el-skeleton mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton width-50 mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton mb-3"></div><div class="el-skeleton width-50 mb-3"></div></div>`;
@@ -231,7 +245,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-themeTogglebtn.addEventListener('click', function() {
+/* themeTogglebtn.addEventListener('click', function() {
   if(!document.body.classList.contains("dark")){
     document.body.classList.add("dark-theme","dark");
     window.localStorage && window.localStorage.setItem("theme","dark");
@@ -239,7 +253,7 @@ themeTogglebtn.addEventListener('click', function() {
     document.body.classList.remove("dark-theme","dark");
     window.localStorage && window.localStorage.setItem("theme","light");
   }
-});
+}); */
 
 document.addEventListener("DOMContentLoaded", async () => {
   // 获取自定义列表
@@ -639,7 +653,7 @@ memosTextarea.addEventListener('focus', function(event) {
   }
 });
 
-//搜索 Memo
+/* //搜索 Memo
 searchBtn.addEventListener("click", function () {
   if(searchInput.classList.contains("d-none")){
     userButton.classList.add("d-none")
@@ -660,7 +674,7 @@ searchBtn.addEventListener("click", function () {
       searchNow(searchInput.value)
     }
   });
-});
+}); */
 
 function searchNow(serchText){
   if(serchText !== ""){
@@ -696,7 +710,7 @@ function searchNow(serchText){
 }
 
 //显示订阅列表
-userlistBtn.addEventListener("click", function () {
+/* userlistBtn.addEventListener("click", function () {
   let userlistDom = document.querySelector(".userlist");
   if(userlistDom){
     userlistDom.remove();
@@ -709,7 +723,7 @@ userlistBtn.addEventListener("click", function () {
     userlistDom += `</div>`;
     memosDom.insertAdjacentHTML('beforebegin', userlistDom);
   }
-});
+}); */
 
 //返回个人主页
 function goHome(){
@@ -737,7 +751,7 @@ function goBbs(){
   cocoMessage.success("有啥新鲜事儿？");
 };
 
-goHomeBtn.addEventListener("click", function () {
+/* goHomeBtn.addEventListener("click", function () {
   window.localStorage && window.localStorage.setItem("memos-mode",  "MEMOSHOME");
   let tagnowHas = document.querySelector(".memos-tagnow")
   if(tagnowHas) tagnowHas.remove();
@@ -754,7 +768,7 @@ randomUserBtn.addEventListener("click", function () {
   let tagnowHas = document.querySelector(".memos-tagnow")
   if(tagnowHas) tagnowHas.remove();
   goRandUser()
-});
+}); */
 //随机个人
 function goRandUser(){
   randomUser = 1;
