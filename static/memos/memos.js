@@ -819,21 +819,8 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode) {
       memosAccess = 1;
     };
     let userMemoUrl;
-    if(tag && (random == null || random == "" )){
-      userMemoUrl = `${link}/api/v1/memo?creatorId=${id}&tag=${tag}&rowStatus=NORMAL&limit=50`;
-    }else if(search){
-      userMemoUrl = `${link}/api/v1/memo?creatorId=${id}&content=${search}&rowStatus=NORMAL&limit=${limit}`;
-    }else if(mode == "NOPUBLIC"){
-      userMemoUrl = `${link}/api/v1/memo`;
-    }else if(random){
-      if(tag){
-        userMemoUrl = `${link}/api/v1/memo?tag=${tag}&limit=1&offset=${random}`;
-      }else{
-        userMemoUrl = `${link}/api/v1/memo?&limit=1&offset=${random}`;
-      }
-    }else{
+   
       userMemoUrl = `${link}/api/v1/memo?creatorId=${id}&rowStatus=NORMAL&limit=50`;
-    }
 
     if (link == memosPath) {
       try {
@@ -885,7 +872,7 @@ async function getUserMemos(link,id,name,avatar,tag,search,mode) {
           });
           memoDom.innerHTML = "";
           this.updateData(memoData);
-          if(!random && memoData.length >= 8 ){
+          if(memoData.length >= 8 ){
             setTimeout(function() {
               loadBtn.classList.remove('d-none');
             }, 1000);
@@ -1282,47 +1269,6 @@ function getEditIcon() {
     }
   });
   
-  randomBtn.addEventListener("click", async function () {
-    let memosAllCount = window.localStorage && window.localStorage.getItem("memos-response-count");
-    let nowTag,userMemoUrl;
-    nowTagText = document.querySelector(".memos-tagnow-name") || ''
-    if(nowTagText){
-      nowTag = nowTagText.textContent;
-      userMemoUrl= `${nowLink}/api/v1/memo?tag=${nowTag}`
-    }else{
-      userMemoUrl = `${nowLink}/api/v1/memo/stats?creatorId=${nowId}`
-    }
-    if(!memosAllCount || nowTagText){
-      try {
-        let response = await fetch(userMemoUrl,{
-            headers: {
-              'Authorization': `Bearer ${memosOpenId}`,
-              'Content-Type': 'application/json',
-              'Cache-Control': 'no-cache',
-            },
-            cache: 'no-store',
-        });
-        if (!response.ok) {
-          throw new Error(response.statusText);
-        }
-        let data = await response.json();
-        memosAllCount = data.length - 1;
-        if(!nowTag){
-          window.localStorage && window.localStorage.setItem("memos-response-count",memosAllCount);
-        }
-        let randomNum = random(0,memosAllCount);
-        getUserMemos(nowLink,nowId,nowName,nowAvatar,nowTag,"","",randomNum)
-      } catch (error) {
-        console.error(error);
-      }
-      if(nowTagText){
-        oneDayBtn.classList.remove("d-none")
-      }
-    }else{
-        let randomNum = random(0,memosAllCount);
-        getUserMemos(nowLink,nowId,nowName,nowAvatar,nowTag,"","",randomNum)
-    }
-  });
 
   //开启回忆一条
   oneDayBtn.addEventListener("click", async function () {
