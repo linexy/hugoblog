@@ -325,7 +325,7 @@ function memoFollow(mode) {
   //记忆显示模式
   usernowBtnDom.forEach((item) => {item.classList.remove('current');})
   if(mode == "MEMOSHOME"){
-    goHomeBtn.classList.add("current")
+    // goHomeBtn.classList.add("current")
     getUserMemos(nowLink,nowId,nowName,nowAvatar,"","","MEMOSHOME")
   }else if(mode == "MEMOSBBS"){
     //goBbsBtn.classList.add("current")
@@ -338,7 +338,7 @@ function memoFollow(mode) {
   }else if(mode == "oneday"){
     getUserMemos(nowLink,nowId,nowName,nowAvatar,"","",mode)
   }else{
-    goHomeBtn.classList.add("current")
+  //  goHomeBtn.classList.add("current")
     getUserMemos(nowLink,nowId,nowName,nowAvatar)
   }
 
@@ -702,7 +702,7 @@ function searchNow(serchText){
 
     searchInput.classList.add("animate__fadeOutRight")
   setTimeout(function() {
-    userButton.classList.remove("d-none")
+    //userButton.classList.remove("d-none")
     searchInput.classList.add("d-none")
     searchInput.classList.remove("animate__fadeOutRight")
   }, 500);
@@ -738,10 +738,10 @@ function searchNow(serchText){
 
 //切换为广场模式
 function goBbs(){
-  goBbsBtn.classList.add("noclick")
+  //goBbsBtn.classList.add("noclick")
   usernowBtnDom.forEach((item) => {item.classList.remove('current');})
-  goBbsBtn.classList.add("current")
-  goHomeBtn.classList.remove("current")
+  //goBbsBtn.classList.add("current")
+  //goHomeBtn.classList.remove("current")
   getMemos();
   let usernowName = document.querySelector(".user-now-name");
   let usernowAvatar = document.querySelector(".user-now-avatar");
