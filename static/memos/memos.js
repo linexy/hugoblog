@@ -26,21 +26,7 @@ var userNow = `
   <span class="user-now-name"></span>
   <div class="row-fill">
     <input class="search-memos-input border-b input-text py-2 animate__animated animate__fadeIn animate__fadeInRight d-none" type="text" placeholder="想搜点啥？" id="">
-    <span class="search-memos-btn button d-md-flex p-2 mr-2">
-    </span>
     <div class="user-button-span row-fill">
-    <span class="memos-theme-toggle button d-md-flex p-2 mr-2">
-    </span>
-    <span class="my-blog-feeds button d-md-flex p-2 mr-2">
-    </span>
-    <span class="userlist-memos button d-md-flex p-2 mr-2">
-    </span>
-    <span class="randomuser-memos button d-md-flex p-2 mr-2">
-    </span>
-    <span class="gobbs-memos button d-md-flex p-2 mr-2">
-    </span> 
-    <span class="gohome-memos button d-md-flex p-2 mr-3">
-    </span>
     </div>
   </div>
 </div>`
