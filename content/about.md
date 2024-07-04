@@ -1,5 +1,5 @@
 ---
-title: '关于'
+title: 'About'
 date: 2024-03-14 12:41:27
 layout: 'posts'
 ---
