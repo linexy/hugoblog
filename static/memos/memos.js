@@ -21,12 +21,7 @@ var memoDefaultList = [
 ];
 
 var userNow = `
-<div class="user-now card-item flex-fill mb-3 row">
-  <div class="call-memos-editor item-avatar p-3 "><img class="user-now-avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/ style="pointer-events: none;"></div>
-  <span class="user-now-name"></span>
-  <div class="row-fill">
-  </div>
-</div>`
+`
 memosDom.insertAdjacentHTML('beforebegin', userNow);
 
 var backTop = `<div class="backtop d-none"><svg xmlns="http://www.w3.org/2000/svg" width="1.25rem" height="1.25rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m18 15l-6-6l-6 6"/></svg></div>`
