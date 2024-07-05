@@ -24,7 +24,7 @@ var userNow = `
 <div class="user-now card-item flex-fill mb-3 row">
   <div class="call-memos-editor item-avatar p-3 "><img class="user-now-avatar" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"/ style="pointer-events: none;"></div>
   <span class="user-now-name"></span>
-  <div class="record-life">记录无趣平凡的生活，努力从中寻找快乐。</div>
+  <span class="record-life">记录无趣平凡的生活，努力从中寻找快乐。</span>
   <div class="row-fill">
   </div>
 </div>`
