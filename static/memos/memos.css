@@ -416,13 +416,11 @@ blockquote {
 	transition: all .6s ease-out;
 }
 
-.card-item2 {
-	position: relative;
-	overflow: hidden;
-	border-radius: .33rem;
-	cursor: default;
-	transition: all .6s ease-out;
-}
+.record-life {
+	height: 3.5rem;
+	line-height: 3.5rem;
+	font-size: 0.875rem;
+  }
 
 .card-item:hover {
 	background-color: var(--light-background-hover);
