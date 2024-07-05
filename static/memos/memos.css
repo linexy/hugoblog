@@ -657,6 +657,8 @@ buttom.cancel-edit-btn{margin-left:-1rem;}
 .user-now.card-item .item-avatar img{border-radius:8px;display: inline-block;max-width: 100%;}
 .user-now-name{height:3.5rem;line-height:3.5rem;}
 .user-now-name,.item-creator,.item-footer{font-size:0.875rem;}
+.user-now-name2{height:3.5rem;line-height:3.5rem;}
+.user-now-name2,.item-creator,.item-footer{font-size:0.875rem;}
 .item-footer svg{opacity:0.4;}
 .item-footer .item span{color: var(--light-color-secondary);}
 .dark .item-footer .item span{color: var(--dark-color-secondary);}
