@@ -52,8 +52,8 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   logoText = "hello friend"
 
   MenuMore = "更多"
-  DateFormatList = "2006-01-02 15:04:05"
-  DateFormatSingle = "2006-01-02 15:04:05"
+  DateFormatList = "2006-01-02"
+  DateFormatSingle = "2006-01-02"
   ReadMore = "阅读全文"
 
   EditPath = 'https://github.com/linexy/hugoblog/edit/master/content'
