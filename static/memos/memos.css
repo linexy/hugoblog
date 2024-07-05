@@ -688,5 +688,6 @@ buttom.cancel-edit-btn{margin-left:-1rem;}
 
 @media (max-width:480px) {
 	.user-now-name{display:none;}
+	.user-now-name2{display:none;}
 	.user-now span.mr-2{margin-right:0 !important;}
 }
