@@ -109,9 +109,9 @@
     </div>
   </div>
 
-  {{$movieitems := getJSON "https://db.lzsay.com/movie" }}
+  {{$movieitems := getJSON "https://db.lzsay.com/tv" }}
   <div class="douban border-top sc-ksluID gFnzgG">
-    <h3><a href="/movies/">近期观影</a></h3>
+    <h3><a href="/movies/">近期电视</a></h3>
       <div class="items sc-dIsUp fIuTG">
           {{range $value := first 5 $movieitems.data}}
             {{ $item := $value.item }}
