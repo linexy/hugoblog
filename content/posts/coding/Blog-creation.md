@@ -11,7 +11,7 @@ tags:
 
 复制一份Github源码，通过page直接链接到GitHub，在部署的时候要注意几个点：
 
-> [!构建参数]
+> [!构建参数]  
 > 构建命令：hugo    
 > 构建输出目录：/public     
 > 根目录：/     
@@ -41,7 +41,7 @@ iptables -I INPUT -p tcp --dport 5230 -j ACCEPT
 docker ps -a//找到memos进程的CONTAINER ID
 docker update --restart=always CONTAINER ID
 ```
-这里安装就完成了，可以用ip:5230测试下访问，要注意的是浏览器会默认用https去访问，是访问不了的，可以收到改为http://ip:5230测试一下。为了更好的使用体验，需要再分配一个域名。
+这里安装就完成了，可以用ip:5230测试下访问，要注意的是浏览器会默认用https去访问，是访问不了的，可以改为http://ip:5230测试一下。为了更好的使用体验，需要再分配一个域名。
 ### 自定义域名
 安装nginx
 ```
