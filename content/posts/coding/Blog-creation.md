@@ -23,60 +23,60 @@ tags:
 3. 涉及到的各种接口都改为了私有部署；
 ## memos搭建
 ### VPS上安装Docker
-```
+```shell
 apt-get install docker
 apt-get install dicker-compose
 ```
 ### 安装memos
 由于我的博客模板中兼容的memos是旧版本的，所有我安装的时候指定了memos的版本。
-```
+```shell
 docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:0.18.2
 ```
 端口可自定义，打开防火墙对应端口
-```
+```shell
 iptables -I INPUT -p tcp --dport 5230 -j ACCEPT
 ```
 查看docker进程ID，设置服务自启动
-```
+```shell
 docker ps -a//找到memos进程的CONTAINER ID
 docker update --restart=always CONTAINER ID
 ```
 这里安装就完成了，可以用ip:5230测试下访问，要注意的是浏览器会默认用https去访问，是访问不了的，可以改为http://ip:5230测试一下。为了更好的使用体验，需要再分配一个域名。
 ### 自定义域名
 安装nginx
-```
+```shell
 apt-get install nginx
 ```
 在 /etc/nginx/conf.d/ 目录下创建 memo 的 nginx 配置：
-```
+```shell
 cd /etc/nginx/conf.d/
 touch memos.conf
 ```
 然后去域名托管商那里增加DNS解析到VPS的IP。
 现在网络访问都需要https了，我们需要为我们的域名配置一个SSL证书。这里我们使用certbot开源工具，可以自动化地申请、续期和部署Let's Encrypt颁发的SSL证书。
 首先关闭nginx服务和memos服务：
-```
+```shell
 service nginx stop
 docker stop memos
 ```
 安装certbot:
-```
+```shell
 apt-get install certbot
 ```
 为自己的域名签发证书：
-```
+```shell
 certbot certonly --standalone -d your.site
 ```
 证书只有三个月有效期，我们需要让证书能够自动更新：
 `crontab -e`
 在打开的文件里最后加入如下代码：
-```
+```shell
 0 3 1 * * certbot renew --quiet --pre-hook "service nginx stop" --post-hook "service nginx start"
 ```
 这样每个月 1 号的凌晨三点执行证书重新签发任务，就可以保障自动续期了。
 证书签发完成后，编辑我们前面新建的memos.conf文件,加入以下代码，注意修改你的自定义域名：
 `nano memos.conf`
-```
+```shell
 server {  
     listen 443 ssl;  
     server_name your.site;  
@@ -101,14 +101,14 @@ server {
 }
 ```
 再启动nginx和memos服务：
-```
+```shell
 service nginx start
 docker start memos
 ```
 这时就可以用https://your.site访问网站了。
 ### memos美化
 主要为修改字体为霞鹜文楷，在memos的设置-系统-自定义样式中加入如下代码：
-```
+```css
 /* 修改字体 */
 body{font-family: "LXGW WenKai Screen", sans-serif !important;}
 /* 修改Memo字号 */
@@ -191,7 +191,7 @@ blockquote{
 }
 ```
 在自定义脚本处加入如下代码：
-```
+```js
 function changeFont() {  
   const link = document.createElement("link");  
   link.rel = "stylesheet";  
