@@ -1,0 +1,7 @@
+User-agent: *
+allow: /
+allow:/bbs/
+allow:/good/
+allow:/archives/
+allow:/posts/
+Sitemap: https://fatesinger.com/wp-sitemap.xml
