@@ -75,3 +75,4 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   mediatype = "application/rss"
   baseName = "atom"
 
+enableRobotsTXT = true
