@@ -11,7 +11,7 @@ let postTile = document.querySelector(".post-title a").textContent
 async function geminiAI() {
   postAI.insertAdjacentHTML('afterend', '<div class="post-ai-result"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div>');
   postAI.classList.add("noclick")
-  let GeminiFetch = "https://doubao.lzsay.com/api/v3/chat/completions"
+  let GeminiFetch = "https://gemini.lzsay.com/v1/chat/completions"
   try{
     let postAIResult = document.querySelector(".post-ai-result")
     let input = document.querySelector(".post-content").textContent
@@ -19,12 +19,11 @@ async function geminiAI() {
     let toAI = `文章标题：${postTile}，具体内容：${inputHanzi}`
     const res = await fetch(GeminiFetch, {
       headers: {
-        'Authorization':'Bearer 9cd4a5e4-646f-4522-b16c-9a76ebcdb480',
         'Content-Type': 'application/json'
       },
       method: 'POST', 
       body: JSON.stringify({
-        model: 'ep-20240711053648-smb9w',
+        model: 'doubaopro128k',
         messages: [
           { role: 'system',content:`You are a highly skilled AI trained in language comprehension and summarization. I would like you to read the text delimited by triple quotes and summarize it into a concise abstract paragraph. Aim to retain the most important points, providing a coherent and readable summary that could help a person understand the main points of the discussion without needing to read the entire text. Please avoid unnecessary details or tangential points.
           Only give me the output and nothing else. Do not wrap responses in quotes. Respond in the Chinese language.`},
