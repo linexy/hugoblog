@@ -30,23 +30,15 @@ async function geminiAI() {
         ],
       })
     })
-    const reader = res.body.getReader()
-    while(true) {
-      const {value, done} = await reader.read()
-      if (done) {
-        break
-      }
-      const text = new TextDecoder().decode(value)
-      const match = text.match(/DONE/)
-      if(!match){
-        const textJson = JSON.parse(text.substring(5))
-        const resData = textJson.choices[0].delta.content
-        if(resData.length > 0){
-          //console.log(textJson)
-          postAIResult.textContent += resData
-        }
-      }
-    }
+   // 读取整个响应体
+   const responseText = await res.text();
+
+// 解析JSON数据
+const data = JSON.parse(responseText);
+const content = data.choices[0].message.content;
+
+// 显示结果
+postAIResult.textContent = `内容: ${content}`;
   } catch (error) {
     document.querySelector(".post-ai-result").remove();
     console.log(error);
