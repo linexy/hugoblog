@@ -25,12 +25,9 @@ async function geminiAI() {
       body: JSON.stringify({
         model: 'doubaopro128k',
         messages: [
-          { role: 'system',content:`You are a highly skilled AI trained in language comprehension and summarization. I would like you to read the text delimited by triple quotes and summarize it into a concise abstract paragraph. Aim to retain the most important points, providing a coherent and readable summary that could help a person understand the main points of the discussion without needing to read the entire text. Please avoid unnecessary details or tangential points.
-          Only give me the output and nothing else. Do not wrap responses in quotes. Respond in the Chinese language.`},
+          { role: 'system',content:`你是一个受过语言理解和摘要训练的高级人工智能。我希望你阅读以引号为分界的文本，并将其总结为一个简明的摘要段落。力求保留最重要的观点，提供一个连贯、可读的摘要，帮助人们理解讨论的要点，而无需阅读全文。请避免不必要的细节或切题。只给我输出结果，不提供其他信息。请不要用引号将回复包起来。`},
           { role: 'user', content: toAI } 
         ],
-        temperature: 0.7,
-        stream: true
       })
     })
     const reader = res.body.getReader()
