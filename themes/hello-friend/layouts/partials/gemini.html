@@ -6,6 +6,14 @@
 .post-ai-result svg{animation: spin 1s infinite linear;}
 </style>
 <script>
+function base64Encode(str) {
+  return btoa(unescape(encodeURIComponent(str)));
+}
+
+function base64Decode(str) {
+  return decodeURIComponent(escape(atob(str)));
+}
+ 
 // 加密后的敏感信息
 const encryptedGeminiFetch = base64Encode("https://gemini.lzsay.com/v1/chat/completions");
 const encryptedModel = base64Encode("doubaopro128k");
