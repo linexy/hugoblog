@@ -6,56 +6,34 @@
 .post-ai-result svg{animation: spin 1s infinite linear;}
 </style>
 <script>
-function base64Encode(str) {
-  return btoa(unescape(encodeURIComponent(str)));
-}
-
-function base64Decode(str) {
-  return decodeURIComponent(escape(atob(str)));
-}
- 
-// 加密后的敏感信息
-const encryptedGeminiFetch = base64Encode("https://gemini.lzsay.com/v1/chat/completions");
-const encryptedModel = base64Encode("doubaolite4k");
-const encryptedAuthorization = base64Encode("Bearer sk-AKLTM2FlN2U4NWQ5");
-
-let postAI = document.querySelector(".post-ai")
-let postTile = document.querySelector(".post-title a").textContent
-async function geminiAI() {
-  postAI.insertAdjacentHTML('afterend', '<div class="post-ai-result"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div>');
-  postAI.classList.add("noclick")
-  //let GeminiFetch = "https://gemini.lzsay.com/v1/chat/completions"
-  try{
-    let postAIResult = document.querySelector(".post-ai-result")
-    let input = document.querySelector(".post-content").textContent
-    let inputHanzi = input.replace(/\n/g, '').replace(/[ ]+/g, ' ').replace(/<pre>[\s\S]*?<\/pre>/g, '').substring(0, 30000)
-    let toAI = `文章标题：${postTile}，具体内容：${inputHanzi}`
-    const res = await fetch(base64Decode(encryptedGeminiFetch), {
-      headers: {
-        'Authorization':base64Decode(encryptedAuthorization),
-        'Content-Type': 'application/json'
-      },
-      method: 'POST', 
-      body: JSON.stringify({
-        model: base64Decode(encryptedModel),
-        messages: [
-          { role: 'system',content:`你是一个受过语言理解和摘要训练的高级人工智能。我希望你阅读以引号为分界的文本，并将其总结为一个简明的摘要段落。力求保留最重要的观点，提供一个连贯、可读的摘要，帮助人们理解讨论的要点，而无需阅读全文。请避免不必要的细节或切题。只给我输出结果，不提供其他信息。请不要用引号将回复包起来。`},
-          { role: 'user', content: toAI } 
-        ],
-      })
-    })
-   // 读取整个响应体
-   const responseText = await res.text();
-
-// 解析JSON数据
-const data = JSON.parse(responseText);
-const content = data.choices[0].message.content;
-
-// 显示结果
-postAIResult.textContent = `总结: ${content}`;
-  } catch (error) {
-    document.querySelector(".post-ai-result").remove();
-    console.log("An error occurred.");
-  }
-};
-</script>
+  let postAI = document.querySelector(".post-ai")
+  let postTile = document.querySelector(".post-title a").textContent
+  async function geminiAI() {
+    postAI.insertAdjacentHTML('afterend', '<div class="post-ai-result"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div>');
+    postAI.classList.add("noclick")
+    let proxyUrl = "http://185.77.225.108:3000/api/ai"; // 你的代理API地址
+    try {
+      let postAIResult = document.querySelector(".post-ai-result")
+      let input = document.querySelector(".post-content").textContent
+      let inputHanzi = input.replace(/\n/g, '').replace(/[ ]+/g, ' ').replace(/<pre>[\s\S]*?<\/pre>/g, '').substring(0, 30000)
+      const res = await fetch(proxyUrl, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({
+          input: inputHanzi,
+          postTile: postTile
+        })
+      });
+  
+      const data = await res.json();
+      const content = data.choices[0].message.content;
+  
+      postAIResult.textContent = `总结: ${content}`;
+    } catch (error) {
+      document.querySelector(".post-ai-result").remove();
+      console.log("An error occurred.");
+    }
+  };
+  </script>
