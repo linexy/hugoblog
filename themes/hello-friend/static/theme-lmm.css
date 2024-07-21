@@ -15,6 +15,8 @@
 	--tabletWidth: (max-width:900px)
 }
 
+@import url("https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreen.min.css");
+
 .button-container {
 	display: table;
 	margin-left: auto;
