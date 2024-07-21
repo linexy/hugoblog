@@ -523,7 +523,7 @@ figure img{max-width:100%;border-radius:0;}
 	figure figcaption {width: 75%;}
 }
 code {
-	font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+	font-family: "LXGW WenKai Screen", sans-serif;
 	background: #eaeaea;
 	background: var(--light-background-secondary);
 	padding: 1px 6px;
@@ -571,7 +571,7 @@ blockquote {
 	border-left: 2px solid;
 	margin: 1.4rem;
 	padding: 0.8rem 1.2rem;
-	font-family: KaiTi,STKaiti,PingFang SC,STFangsong !important;
+	font-family: "LXGW WenKai Screen", sans-serif;
 }
 blockquote p{margin:0;}
 .home blockquote {margin:0;padding:0 10px;}
@@ -1201,7 +1201,7 @@ hr {
 
 code[class*=language-],pre[class*=language-] {
 	background: none;
-	font-family: Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;
+	font-family: "LXGW WenKai Screen", sans-serif;
 	text-align: left;
 	word-spacing: normal;
 	word-break: break-word;
