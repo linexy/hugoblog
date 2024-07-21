@@ -79,6 +79,3 @@ enableRobotsTXT = true
 
 [body]
 fontFamilyBody = "'LXGW WenKai Screen', 'Palatino Linotype', serif"
-{
-    font-family: "LXGW WenKai Screen", sans-serif;
-}
