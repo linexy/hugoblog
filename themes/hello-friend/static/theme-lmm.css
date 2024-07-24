@@ -11,7 +11,7 @@
 	--dark-color: #f5f5f5;
 	--dark-color-secondary: #73747b;
 	--dark-border-color: #4a4b50;
-	--phoneWidth: (max-width:684px);
+	--phoneWidth: (max-width:683px);
 	--tabletWidth: (max-width:900px)
 }
 
@@ -447,7 +447,7 @@ body {
 }
 
 @media (max-width:683px) {
-	body {
+	.header, .footer, .post-content, .menu {
 		font-family: "LXGW WenKai Screen", sans-serif;
 		font-size: 1rem
 	}
