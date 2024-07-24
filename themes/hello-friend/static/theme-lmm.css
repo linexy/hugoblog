@@ -16,6 +16,9 @@
 }
 
 @import url("https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreen.min.css");
+body, h1, h2, h3, h4, p, .your-class {
+    font-family: "LXGW WenKai Screen", sans-serif !important;
+}
 
 .button-container {
 	display: table;
@@ -434,7 +437,7 @@ html {
 body {
 	margin: 0;
 	padding: 0;
-	font-family: "LXGW WenKai Screen", sans-serif;
+	font-family: "LXGW WenKai Screen", sans-serif !important;
 	font-size: 1.1rem;
 	font-weight: 400;
 	line-height: 2.2;
@@ -448,7 +451,7 @@ body {
 
 @media (max-width:683px) {
 	.header, .footer, .post-content, .menu {
-		font-family: "LXGW WenKai Screen", sans-serif;
+		font-family: "LXGW WenKai Screen", sans-serif !important;
 		font-size: 1rem
 	}
 }
@@ -482,7 +485,7 @@ h4 {
 
 @media (max-width:683px) {
 	body{
-		font-family: "LXGW WenKai Screen", sans-serif;
+		font-family: "LXGW WenKai Screen", sans-serif !important;
         font-size: 1rem; 
 	}
 	h1 {
