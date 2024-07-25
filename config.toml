@@ -21,16 +21,16 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 
 [menu]
   [[menu.main]]
-  name="日常"
-  url="/bbs/"
+  name="分类"
+  url="/cats/"
   weight="1"
   [[menu.main]]
-  name="好物"
-  url="/goods/"
+  name="书影音"
+  url="/movies/"
   weight="3"
   [[menu.main]]
   name="归档"
-  url="/page/"
+  url="/archive/"
   weight="4"
   [[menu.main]]
   name="关于"
