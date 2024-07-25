@@ -5,7 +5,7 @@ title  =  "神呆日志"
 subtitle = "总有些美好值得为之奋斗！"
 
 
-theme  =  "hello-friend"
+theme  =  "farallon"
 summaryLength = 140
 hasCJKLanguage = true
 # 每页显示的文章数量用于分页
