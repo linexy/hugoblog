@@ -30,7 +30,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   weight="3"
   [[menu.main]]
   name="归档"
-  url="/archives/"
+  url="/page/"
   weight="4"
   [[menu.main]]
   name="关于"
