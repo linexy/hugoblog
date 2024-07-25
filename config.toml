@@ -16,7 +16,6 @@ timeout = '10m'
 ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 
 [permalinks]
-  posts = "/:filename/"
   [permalinks.section]
     post = '/archive'
   [permalinks.page]
@@ -57,23 +56,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 [Author]
   name = "linexy"
   
-[params]
-  # dir name of your blog content (default is `content/posts`)
-  contentTypeName = "posts"
-  # "light" or "dark"
-  defaultTheme = "dark"
-  # if you set this to 0, only submenu trigger will be visible
-  showMenuItems = 6
-  # Enable to show reading time in minutes for posts
-  showReadingTime = false
-  logoText = "hello friend"
 
-  MenuMore = "更多"
-  DateFormatList = "2006-01-02"
-  DateFormatSingle = "2006-01-02"
-  ReadMore = "阅读全文"
-
-  EditPath = 'https://github.com/linexy/hugoblog/edit/master/content'
 
 [markup]
   [markup.goldmark]
