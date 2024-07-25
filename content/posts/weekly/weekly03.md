@@ -14,7 +14,7 @@ feature: https://img.lzsay.com/lzsay-img/2024/07/be6f01b6ed015b4f0b99a4097cdd71e
 
 听了忽左忽右的[333改造西湖：「新中国第二首都」杭州的营建、除虫与迁坟](https://www.xiaoyuzhoufm.com/episode/66715543c26e396a36a73084)这期播客，对西湖的历史有了一定了解，西湖的改造持续了很长时间，涉及产权问题、环境问题。原先周边是有很多的私人别墅和坟墓，包括一些名人的坟墓。这些坟墓在改造的过程中有些迁走了，后来又迁回来了。这一走一回代表的意义已经不一样了，比如苏小小的墓以前是承载着一种文化，代表着一种思想。现在更多的是为利益考虑，能带来更多的收益。
 
-{{< neodb "https://neodb.social/podcast/3wu41o8bRsbUt0BCIBcng1" >}}
+
 
 ## 折腾
 
@@ -43,7 +43,7 @@ feature: https://img.lzsay.com/lzsay-img/2024/07/be6f01b6ed015b4f0b99a4097cdd71e
 
 在圣诞季中，哈克当上了首相，为后续的《是，首相》做了过渡。
 
-{{< neodb "https://neodb.social/tv/season/21d5LjWut2RvrSLfkOUbgE" >}}
+
 
 > 公务员工作三原则：越拖延越高效，越费钱越便宜，越秘密越民主。  
 > 报纸和政府不一样。如果我们发表了声明，我们得证明那是真的。  
@@ -54,11 +54,11 @@ feature: https://img.lzsay.com/lzsay-img/2024/07/be6f01b6ed015b4f0b99a4097cdd71e
 
 《把时间当作朋友》这本书读了3章了，这本书其实在15年我就听闻写的很不错，当时还买了一本送给了我现在的老婆，但是我一直没有去读过。现在读起来我是有点遗憾的，遗憾我当时应该读一读。里面讲的很多其实我都已经在实践或者做到了，都是我通过很多经验教训得来的。如果当时我读了这本书，也许会让我在工作中能够更早得明白一些方法，也许不会有任何改变，谁知道呢？所以不是后悔是遗憾。
 
-{{< neodb "https://neodb.social/book/7IiTj586EHgmuW1hJiGK1H" >}}
+
 
 同时也在开启另一本书得阅读《财富自由之路》，同一个作者李笑来写的，名字很土，是我迟迟没有阅读的障碍。
 
-{{< neodb "https://neodb.social/book/1WHF4zUQWHrKdw4d2K3F0z" >}}
+
 
 ## 考试
 
