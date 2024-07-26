@@ -19,13 +19,13 @@
 
     {{ range $paginator.Pages }}
     <div class="post list-item">
-      {{ if .Params.feature }}
+     <!--  {{ if .Params.feature }}
         {{ if .Params.UseRelativeCover }}
           <img loading='lazy' decoding="async" src="{{ (printf "%s%s" .Permalink .Params.feature ) }}" class="post-cover list" />
         {{ else }}
           <img loading='lazy' decoding="async" src="{{ .Params.feature | absURL }}" class="post-cover list" />
         {{ end }}
-      {{ end }}
+      {{ end }} -->
       <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
       <div class="post-meta">
         {{ if .Date }}
