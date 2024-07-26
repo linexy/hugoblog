@@ -36,19 +36,19 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   [[menu.main]]
   name="书影音"
   url="/movies/"
-  weight="3"
+  weight="1"
   [[menu.main]]
   name="归档"
   url="/archive/"
-  weight="4"
+  weight="1"
   [[menu.main]]
   name="关于"
   url="/about/"
-  weight="6"
+  weight="1"
    [[menu.main]]
   name="标签"
   url="/topics/"
-  weight="2"
+  weight="1"
   
 [taxonomies]
   category = 'categories'
@@ -57,28 +57,16 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   name = "linexy"
   
 
-
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
   [markup.tableOfContents]
-    endLevel = 3
-    ordered = false
-    startLevel = 1
+  endLevel = 5
+  startLevel = 3
     
 [outputs]
-  home = ["HTML","Atom","JSON"] 
+  home = [ "HTML","JSON","RSS","SITEMAP"]
   page = ["HTML"]
 
-[outputFormats.Atom]
-  mediatype = "application/rss"
-  baseName = "atom"
-
-enableRobotsTXT = true
-
 [related]
-  includeNewer = true
+  includeNewer = false
   [[related.indices]]
     applyFilter = false
     cardinalityThreshold = 0
@@ -95,6 +83,3 @@ enableRobotsTXT = true
     toLower = false
     type = 'basic'
     weight = 10
-
-[body]
-fontFamilyBody = "'LXGW WenKai Screen', 'Palatino Linotype', serif"
