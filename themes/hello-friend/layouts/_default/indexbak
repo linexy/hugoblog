@@ -13,18 +13,19 @@
   {{ end }}
   {{ $paginator := .Paginate (where $PageContext.RegularPages "Type" $contentTypeName) }}
 
-
-  <div class="posts">
+  <div id="bber-talk"></div>
+  
+  <div class="posts posts-home home">
+    {{ range (where (where .Site.Pages "Type" "in" (slice "post" "posts")) "Kind" "page").GroupByDate "2006" }}
     {{ range $paginator.Pages }}
-    {{ $PostCate := .File.Dir | replaceRE "posts/(.*)/" "$1"}}
-    <div class="post on-list {{$PostCate}}">
-    {{ if eq $PostCate "chat"}}
-      {{ .Render "chat"}}
-      <div class="post-content $PostCate">
-        <a href="{{ .Permalink }}" rel="link"><img loading="lazy" decoding="async" class="post-avatar avatar" src="https://cravatar.cn/avatar/ba83fa02fc4b2ba621514941307e21be" ></a>
-          {{ .Summary }}
-      </div>
-    {{ else }}
+    <div class="post list-item">
+     <!--  {{ if .Params.feature }}
+        {{ if .Params.UseRelativeCover }}
+          <img loading='lazy' decoding="async" src="{{ (printf "%s%s" .Permalink .Params.feature ) }}" class="post-cover list" />
+        {{ else }}
+          <img loading='lazy' decoding="async" src="{{ .Params.feature | absURL }}" class="post-cover list" />
+        {{ end }}
+      {{ end }} -->
       <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
       <div class="post-meta">
         {{ if .Date }}
@@ -32,36 +33,27 @@
             {{ .Date.Format ($.Site.Params.DateFormatList | default "2006-01-02") }}
           </span>
         {{ end }}
-
         {{ if .Params.tags }}
-        <span class="">
+        <span class="tags">
           {{ range .Params.tags }}
             #<a href="{{ (urlize (printf "tags/%s" . )) | absURL }}/">{{ . }}</a>&nbsp;
           {{ end }}
         </span>
         {{ end }}
       </div>
-
-     <!--  {{ if .Params.feature }}
-        {{ if .Params.UseRelativeCover }}
-          <img loading='lazy' decoding="async" src="{{ (printf "%s%s" .Permalink .Params.feature ) }}" class="post-cover" />
+      <div class="post-content">
+        {{ if .Truncated }}
+          {{ .Summary }}
+          <div><a class="read-more button" href="{{.RelPermalink}}">{{ $.Site.Params.ReadMore | default "Read more" }} →</a></div>
         {{ else }}
-          <img loading='lazy' decoding="async" src="{{ .Params.feature | absURL }}" class="post-cover" />
+          {{ .Content }}
+          {{ .Render "path"}}
         {{ end }}
-      {{ end }} -->
-
-      <div class="post-content $PostCate">
-      {{ if .Truncated }}
-        {{ .Summary }}
-        <div><a class="read-more button" href="{{.RelPermalink}}">{{ $.Site.Params.ReadMore | default "Read more" }} →</a></div>
-      {{ else }}
-        {{ .Content }}
-        {{ .Render "path"}}
-      {{ end }}
       </div>
-    {{ end }}
     </div>
+    {{ end }}
     {{ end }}
     {{ partial "pagination.html" . }}
   </div>
 {{ end }}
+
