@@ -18,43 +18,45 @@
   <div class="posts posts-home home">
 
     {{ range $paginator.Pages }}
-    <div class="post list-item">
-     <!--  {{ if .Params.feature }}
-        {{ if .Params.UseRelativeCover }}
-          <img loading='lazy' decoding="async" src="{{ (printf "%s%s" .Permalink .Params.feature ) }}" class="post-cover list" />
-        {{ else }}
-          <img loading='lazy' decoding="async" src="{{ .Params.feature | absURL }}" class="post-cover list" />
-        {{ end }}
-      {{ end }} -->
-      <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
-      <div class="post-meta">
-        {{ if .Date }}
-          <span class="post-date">
-            {{ .Date.Format ($.Site.Params.DateFormatList | default "2006-01-02") }}
-          </span>
-        {{ end }}
-        {{ if .Params.tags }}
-        <span class="tags">
-          {{ range .Params.tags }}
-            #<a href="{{ (urlize (printf "tags/%s" . )) | absURL }}/">{{ . }}</a>&nbsp;
+    <div class="post list-item" style="display: flex; align-items: center; margin-bottom: 20px;">
+      <div class="post-content" style="flex-grow: 1;">
+        <h1 class="post-title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
+        <div class="post-meta" style="margin-bottom: 10px;">
+          {{ if .Date }}
+            <span class="post-date">
+              {{ .Date.Format ($.Site.Params.DateFormatList | default "2006-01-02") }}
+            </span>
           {{ end }}
-        </span>
-        {{ end }}
-      </div>
-      <div class="post-content">
+          {{ if .Params.tags }}
+          <span class="tags">
+            {{ range .Params.tags }}
+              #<a href="{{ (urlize (printf "tags/%s" . )) | absURL }}/">{{ . }}</a>&nbsp;
+            {{ end }}
+          </span>
+          {{ end }}
+        </div>
         {{ if .Truncated }}
-          {{ .Summary }}
+          <div>{{ .Summary }}</div>
           <div><a class="read-more button" href="{{.RelPermalink}}">{{ $.Site.Params.ReadMore | default "Read more" }} →</a></div>
         {{ else }}
-          {{ .Content }}
+          <div>{{ .Content }}</div>
           {{ .Render "path"}}
         {{ end }}
       </div>
+      {{ if .Params.feature }}
+        <div class="post-cover" style="margin-left: 20px;">
+          {{ if .Params.UseRelativeCover }}
+            <img loading='lazy' decoding="async" src="{{ (printf "%s%s" .Permalink .Params.feature ) }}" alt="{{ .Title }}" style="width: 150px; height: auto;"/>
+          {{ else }}
+            <img loading='lazy' decoding="async" src="{{ .Params.feature | absURL }}" alt="{{ .Title }}" style="width: 150px; height: auto;"/>
+          {{ end }}
+        </div>
+      {{ end }}
     </div>
     {{ end }}
 
   </div>
 
   <div class="homemore"><a href="/archives/">查看更多</a></div>
-
+  
 {{ end }}
