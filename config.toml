@@ -1,42 +1,81 @@
-baseURL = "https://lzsay.com/"
-languageCode = "zh-cn"
-theme = "jingzhe_2"
-themesDir = "themes"
-title = "空白Koobai"
-pygmentsCodeFences = true
-pygmentsCodefencesGuessSyntax = true
-pygmentsUseClasses = true
-enableRobotsTXT = true
-hasCJKLanguage = true
+baseURL  =  "https://lzsay.com"
+languageCode = "zh-CN"
+# DefaultContentLanguage = "zh-CN"
+title  =  "神呆日志"
+subtitle = "总有些美好值得为之奋斗！"
 
-[module]
-  [module.hugoVersion]
-    extended = true
-    min = "0.55.0"
+
+theme  =  "hello-friend"
+summaryLength = 140
+hasCJKLanguage = true
+# 每页显示的文章数量用于分页
+paginate =  10
+# rss 输出数量
+rssLimit = 5
+timeout = '10m'
+ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 
 [permalinks]
-  posts = '/:slug/'
+  posts = "/:filename/"
+  tags = "/tags/:slug/"
 
-[params.artalk]
-    server="https://memos.lzsay.com"
-    site="Koobai 空白生活"
+[menu]
+  [[menu.main]]
+  name="日常"
+  url="/bbs/"
+  weight="1"
+  [[menu.main]]
+  name="好物"
+  url="/goods/"
+  weight="3"
+  [[menu.main]]
+  name="归档"
+  url="/archives/"
+  weight="4"
+  [[menu.main]]
+  name="关于"
+  url="/about/"
+  weight="6"
+
+[Author]
+  name = "linexy"
+  
+[params]
+  # dir name of your blog content (default is `content/posts`)
+  contentTypeName = "posts"
+  # "light" or "dark"
+  defaultTheme = "dark"
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 6
+  # Enable to show reading time in minutes for posts
+  showReadingTime = false
+  logoText = "hello friend"
+
+  MenuMore = "更多"
+  DateFormatList = "2006-01-02"
+  DateFormatSingle = "2006-01-02"
+  ReadMore = "阅读全文"
+
+  EditPath = 'https://github.com/linexy/hugoblog/edit/master/content'
 
 [markup]
   [markup.goldmark]
     [markup.goldmark.renderer]
-      hardWraps = false
       unsafe = true
-      xhtml = false
+  [markup.tableOfContents]
+    endLevel = 3
+    ordered = false
+    startLevel = 1
+    
+[outputs]
+  home = ["HTML","Atom","JSON"] # <domain>/atom.xml
+  page = ["HTML"]
 
-[menu]
-  [[menu.main]]
-    identifier = 'home'
-    name = '首页'
-    url = '/'
-    weight = 1
+[outputFormats.Atom]
+  mediatype = "application/rss"
+  baseName = "atom"
 
-  [[menu.main]]
-    identifier = "sport"
-    name = "骑行"
-    url = "https://sport.koobai.com/"
-    weight = 3
+enableRobotsTXT = true
+
+[body]
+fontFamilyBody = "'LXGW WenKai Screen', 'Palatino Linotype', serif"
