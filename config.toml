@@ -5,7 +5,7 @@ title  =  "神呆日志"
 subtitle = "总有些美好值得为之奋斗！"
 
 
-theme  =  "farallon"
+theme  =  "hello-friend"
 summaryLength = 140
 hasCJKLanguage = true
 # 每页显示的文章数量用于分页
@@ -16,70 +16,66 @@ timeout = '10m'
 ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 
 [permalinks]
-  [permalinks.section]
-    post = '/archive'
-  [permalinks.page]
-    post = '/story/:slugorfilename/'
-    page = '/:slugorfilename/'  
-  [permalinks.term]
-    tags = '/tag/:slug/'
-    categories = '/category/:slug/'
-  [permalinks.taxonomy]
-    tags = '/topics/'
-    categories = '/cats/'
+  posts = "/:filename/"
+  tags = "/tags/:slug/"
 
 [menu]
   [[menu.main]]
-  name="分类"
-  url="/cats/"
+  name="日常"
+  url="/bbs/"
   weight="1"
   [[menu.main]]
-  name="书影音"
-  url="/movies/"
-  weight="1"
+  name="好物"
+  url="/goods/"
+  weight="3"
   [[menu.main]]
   name="归档"
-  url="/archive/"
-  weight="1"
+  url="/archives/"
+  weight="4"
   [[menu.main]]
   name="关于"
   url="/about/"
-  weight="1"
-   [[menu.main]]
-  name="标签"
-  url="/topics/"
-  weight="1"
-  
-[taxonomies]
-  category = 'categories'
-  tag = 'tags'
+  weight="6"
+
 [Author]
   name = "linexy"
   
+[params]
+  # dir name of your blog content (default is `content/posts`)
+  contentTypeName = "posts"
+  # "light" or "dark"
+  defaultTheme = "dark"
+  # if you set this to 0, only submenu trigger will be visible
+  showMenuItems = 6
+  # Enable to show reading time in minutes for posts
+  showReadingTime = false
+  logoText = "hello friend"
 
+  MenuMore = "更多"
+  DateFormatList = "2006-01-02"
+  DateFormatSingle = "2006-01-02"
+  ReadMore = "阅读全文"
+
+  EditPath = 'https://github.com/linexy/hugoblog/edit/master/content'
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
   [markup.tableOfContents]
-  endLevel = 5
-  startLevel = 3
+    endLevel = 3
+    ordered = false
+    startLevel = 1
     
 [outputs]
-  home = [ "HTML","JSON","RSS","SITEMAP"]
+  home = ["HTML","Atom","JSON"] # <domain>/atom.xml
   page = ["HTML"]
 
-[related]
-  includeNewer = false
-  [[related.indices]]
-    applyFilter = false
-    cardinalityThreshold = 0
-    name = 'tags'
-    pattern = ''
-    toLower = false
-    type = 'basic'
-    weight = 80
-  [[related.indices]]
-    applyFilter = false
-    cardinalityThreshold = 0
-    name = 'date'
-    pattern = ''
-    toLower = false
-    type = 'basic'
-    weight = 10
+[outputFormats.Atom]
+  mediatype = "application/rss"
+  baseName = "atom"
+
+enableRobotsTXT = true
+
+[body]
+fontFamilyBody = "'LXGW WenKai Screen', 'Palatino Linotype', serif"
