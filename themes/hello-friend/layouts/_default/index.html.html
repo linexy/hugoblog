@@ -56,23 +56,27 @@
 
   </div>
 
-  <!-- 分页导航 -->
-  <div class="pagination">
-    {{ if .Paginator.HasPrev }}
-      <a class="prev" href="{{ .Paginator.Prev.URL }}">上一页</a>
-    {{ end }}
-    {{ range .Paginator.Pages }}
-      {{ if eq .Paginator.PageNumber .PageNumber }}
-        <span class="active">{{ .PageNumber }}</span>
-      {{ else }}
-        <a href="{{ .URL }}">{{ .PageNumber }}</a>
+    <!-- 分页导航 -->
+    <div class="pagination">
+      {{ if .Paginator.HasPrev }}
+        <a class="prev" href="{{ .Paginator.Prev.URL }}">上一页</a>
       {{ end }}
-    {{ end }}
-    {{ if .Paginator.HasNext }}
-      <a class="next" href="{{ .Paginator.Next.URL }}">下一页</a>
-    {{ end }}
-  </div>
+      {{ range $paginator.Pages }}
+        {{ if eq $.Paginator.PageNumber .PageNumber }}
+          <span class="active">{{ .PageNumber }}</span>
+        {{ else }}
+          <a href="{{ .URL }}">{{ .PageNumber }}</a>
+        {{ end }}
+      {{ end }}
+      {{ if .Paginator.HasNext }}
+        <a class="next" href="{{ .Paginator.Next.URL }}">下一页</a>
+      {{ end }}
+    </div>
 
-
-
+  {{ else }}
+    <!-- 非主页内容可以显示单篇文章内容 -->
+    <div class="post-content">
+      <!-- 单篇文章的显示内容 -->
+    </div>
+  {{ end }}
 {{ end }}
