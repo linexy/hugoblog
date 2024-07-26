@@ -49,7 +49,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   showMenuItems = 6
   # Enable to show reading time in minutes for posts
   showReadingTime = false
-  logoText = "hello friend"
+  logoText = "lzsay"
 
   MenuMore = "更多"
   DateFormatList = "2006-01-02"

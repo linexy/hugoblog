@@ -11,11 +11,10 @@
   {{ if .IsHome }}
     {{ $PageContext = .Site }}
   {{ end }}
-  {{- $paginator := .Paginate (where .Site.RegularPages "Type" "in" (slice "post" "posts")) }}
-
-  <div id="bber-talk"></div>
   
-  <div class="posts posts-home home">
+
+   <div class="posts posts-home home">
+    {{ $paginator := .Paginate (where $PageContext.RegularPages "Type" in $contentTypeName) }}
      {{ range $paginator.Pages }}
     <div class="post list-item">
      <!--  {{ if .Params.feature }}
