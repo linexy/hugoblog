@@ -55,18 +55,23 @@
 
   </div>
 
-<!-- 分页导航 -->
-<div class="pagination">
-  {{ if .Paginator.HasPrev }}
-    <a class="prev" href="{{ .Paginator.Prev.URL }}">上一页</a>
-  {{ end }}
-  {{ range .Paginator.Pages }}
-    <a href="{{ .URL }}" class="{{ if eq .URL $.Paginator.Page.URL }}active{{ end }}">{{ .PageNumber }}</a>
-  {{ end }}
-  {{ if .Paginator.HasNext }}
-    <a class="next" href="{{ .Paginator.Next.URL }}">下一页</a>
-  {{ end }}
-</div>
+  <!-- 分页导航 -->
+  <div class="pagination">
+    {{ if .Paginator.HasPrev }}
+      <a class="prev" href="{{ .Paginator.Prev.URL }}">上一页</a>
+    {{ end }}
+    {{ range .Paginator.Pages }}
+      {{ if eq .Paginator.PageNumber .PageNumber }}
+        <span class="active">{{ .PageNumber }}</span>
+      {{ else }}
+        <a href="{{ .URL }}">{{ .PageNumber }}</a>
+      {{ end }}
+    {{ end }}
+    {{ if .Paginator.HasNext }}
+      <a class="next" href="{{ .Paginator.Next.URL }}">下一页</a>
+    {{ end }}
+  </div>
+
 
 
 {{ end }}
