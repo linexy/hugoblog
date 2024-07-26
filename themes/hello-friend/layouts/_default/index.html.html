@@ -14,7 +14,8 @@
   
 
    <div class="posts posts-home home">
-    {{  $paginator := .Paginate (where .Site.Pages "Type" "posts") }}
+    
+    {{ $pages := where .Site.RegularPages "Type" "in" $.Site.Params.contentTypeName }}
     {{ range $index,$data := $paginator.Pages }}
     <div class="post list-item">
      <!--  {{ if .Params.feature }}
