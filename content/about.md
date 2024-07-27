@@ -1,7 +1,7 @@
 ---
 title: 'About'
 date: 2024-03-14 12:41:27
-layout: 'posts'
+layout: 'single'
 section: "pages"
 ---
 
