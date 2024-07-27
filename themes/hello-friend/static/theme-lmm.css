@@ -828,7 +828,7 @@ hr {
 	box-shadow: 0 5px 25px rgba(0,0,0,.15);
 }
 .home-2 .post-title,.home-2 .post-meta{margin-right:140px;}
-.home-2 .post-title{font-size: 1.6rem;}
+.home-2 .post-title{font-size: 1.4rem;}
 .home #album,.home #goods{padding:0 1rem;margin-bottom: 2rem;}
 .home #goods{grid-template-columns: repeat(auto-fill,minmax(180px,1fr));grid-gap:1rem;}
 .home .goods-bankuai{height:294px;text-align: left;}
