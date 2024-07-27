@@ -1,9 +1,7 @@
 ---
 title: 'About'
 date: 2024-03-14 12:41:27
-layout: 'single'
-section: "pages"
-type: "page"
+layout: 'posts'
 ---
 
 linexy是一个在无聊人生中挣扎求生的普通人。生活往往充满了无尽的重复和单调，让人感到无趣和疲惫。但在这片枯燥的荒野中，我决定成为自己的破壁人，尝试打破这份无聊，寻找一点点慰藉和乐趣。
