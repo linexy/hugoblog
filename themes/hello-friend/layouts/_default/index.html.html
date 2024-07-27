@@ -12,9 +12,9 @@
     {{ $PageContext = .Site }}
   {{ end }}
 
-  {{/* Add a filter to ensure only pages from "posts" directory are included */}}
+  {{/* Filter to ensure only pages from the "posts" section are included */}}
   {{ $postsOnly := where $PageContext.RegularPages "Section" "posts" }}
-  {{ $paginator := .Paginate (where $postsOnly "Type" $contentTypeName) }}
+  {{ $paginator := .Paginate $postsOnly }}
 
   <div class="posts posts-home home">
     {{ range $paginator.Pages }}
