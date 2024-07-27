@@ -679,7 +679,7 @@ hr {
 
 .post {
 	width: 100%;
-	max-width: 700px;
+	max-width: 1000px;
 	text-align: left;
 	padding: 20px 20px 40px;
 	font-size: 1rem;
@@ -747,7 +747,7 @@ hr {
 		letter-spacing: 1px;
 	}
 	.home-2 .post-title a {
-		line-height: 1.6rem;
+		line-height: 1.4rem;
 		letter-spacing: 0;
 	}
 }
@@ -800,7 +800,7 @@ hr {
     max-width: 1060px;
 	box-shadow: 0 4px 6px rgba(0,0,0,.04);
 }
-.home{width:100%;margin:0 auto;max-width:700px;}
+.home{width:100%;margin:0 auto;max-width:1000px;}
 .home .post{border-bottom:none;padding-bottom:0;margin:0 auto;}
 .home.posts,.home-1.post{margin-bottom:1rem;}
 .home-1 .post-cover{
@@ -834,7 +834,7 @@ hr {
 .home .goods-bankuai{height:294px;text-align: left;}
 .home .goods-duiqi{min-height: 120px;}
 .douban{text-align:left;padding:0 20px;background: #fff;background: var(--light-header);width:100%;}
-.douban .items,.douban h3{max-width:700px;width:100%;margin:0 auto;}
+.douban .items,.douban h3{max-width:1000px;width:100%;margin:0 auto;}
 .douban .items{padding:0 20px;}
 .douban{border-top: 1px solid var(--light-background-secondary);border-bottom: 1px solid var(--light-background-secondary);}
 .dark .douban{background: #252627;background: var(--dark-header);border-top: 1px solid var(--dark-background-secondary);border-bottom: 1px solid var(--dark-background-secondary);}
@@ -1148,7 +1148,7 @@ hr {
 
 .archive {
 	width: 100%;
-	max-width: 700px;
+	max-width: 1000px;
 	text-align: left;
 	padding: 20px;
 	margin: 0 auto
@@ -1584,7 +1584,7 @@ div.code-toolbar>.toolbar a:focus,div.code-toolbar>.toolbar a:hover,div.code-too
 .goods-jiage{color:#999;font-size:14px;line-height:1.4rem}
 .goods-note{color:#999;font-size:14px;line-height:1.3rem}
 
-@media (max-width:700px){
+@media (max-width:1000px){
 .goods-title{font-size:14px;margin:0 10px!important;transition:.5s}
 .goods-jiage{margin:0 10px 0 10px}
 .goods-duiqi img{width:50%;margin:0}
