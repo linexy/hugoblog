@@ -1,23 +1,12 @@
-{{ define "head" }}
-  {{ if .Paginator.HasPrev -}}<link rel="prefetch" href="{{ .Paginator.Prev.URL }}">{{- end }}
-  {{ if .Paginator.HasNext -}}<link rel="prefetch" href="{{ .Paginator.Next.URL }}">{{- end }}
-{{ end }}
-
 {{ define "main" }}
-  {{ $isntDefault := not (or (eq (trim $.Site.Params.contentTypeName " ") "posts") (eq (trim $.Site.Params.contentTypeName " ") "")) }}
-  {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
-
   {{ $PageContext := . }}
   {{ if .IsHome }}
     {{ $PageContext = .Site }}
   {{ end }}
 
-  {{/* Filter to ensure only pages from the "posts" section are included */}}
-  {{ $postsOnly := where $PageContext.RegularPages "Section" "posts" }}
-
-  {{/* Additional filter to exclude pages with an empty section */}}
-  {{ $filteredPosts := where $postsOnly ".Section" "posts" }}
-  {{ $paginator := .Paginate $filteredPosts }}
+  {{/* Filter to ensure only pages of type "posts" are included */}}
+  {{ $postsOnly := where $PageContext.RegularPages "Type" "posts" }}
+  {{ $paginator := .Paginate $postsOnly }}
 
   <div class="posts posts-home home">
     {{ range $paginator.Pages }}
