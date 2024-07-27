@@ -1,5 +1,5 @@
 ---
 title: "我的相册"
 layout: "album"
-type:"page"
+type: "page"
 ---
