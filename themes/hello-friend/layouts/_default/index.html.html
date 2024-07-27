@@ -15,7 +15,7 @@
   {{/* Filter to ensure only pages from the "posts" section are included */}}
   {{ $postsOnly := where $PageContext.RegularPages "Section" "posts" }}
   {{ $paginator := .Paginate $postsOnly }}
-
+  
   <div class="posts posts-home home">
     {{ range $paginator.Pages }}
       <div class="post list-item">
@@ -47,4 +47,8 @@
     {{ end }}
     {{ partial "pagination.html" . }}
   </div>
+  {{ range $PageContext.RegularPages }}
+  <div>{{ .Title }} - Section: {{ .Section }}</div>
 {{ end }}
+
+  {{ end }}
