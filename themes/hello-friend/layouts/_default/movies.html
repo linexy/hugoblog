@@ -1,163 +1,36 @@
 {{ define "main" }}
-<div class="post">
-  <h2 class="post-title">{{.Title}}</h2>
-  
-  <!-- Navigation for switching content -->
-  <div class="navigation">
-    <button id="moviesTab" onclick="switchContent('movies')">我的电影</button>
-    <button id="booksTab" onclick="switchContent('books')">我的书籍</button>
-  </div>
-  
-  <!-- Movies Section -->
-  <div id="moviesContent" class="content-section">
-    <script type="text/javascript">
-      function searchMovies(e) {
-        document.querySelectorAll('.movie-item').forEach(item => item.classList.add('hide'));
-        // your movie search logic here...
-      }
-      function sortMovies(e) {
-        // your movie sort logic here...
-      }
-      // Event listeners for movies
-      window.addEventListener('click', function(e) {
-        if(e.target.classList.contains('sc-gtsrHT')) {
-          e.preventDefault();
-          searchMovies(e);
-        }
-        if(e.target.classList.contains('sort-by-item')) {
-          e.preventDefault();
-          sortMovies(e);
-        }
-      });
-    </script>
-    <div class="lg:col-start-2 lg:col-span-6">
-      {{$items := getCSV "," "data/douban/movie.csv" }}
-      <div class="sc-ksluID gFnzgG">
-        <div class="sc-bdnxRM">
-          <a href="javascript:void 0;" class="sc-gtsrHT kEoOHR" data-search="year" data-method="equal" data-value="">全部</a>
-          {{range $year := (seq now.Year -1 2012)}}
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="year" data-method="equal" data-value="{{$year}}">{{$year}}</a>
-          {{end}}
-        </div>
-        <div class="sc-bdnxRM">
-          <a href="javascript:void 0;" class="sc-gtsrHT kEoOHR" data-search="star" data-method="equal" data-value="">全部</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="5">五星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="4">四星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="3">三星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="2">二星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="1">一星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="0">零星</a>
-        </div>
-        <div class="jvCTkj sort-by">
-          <a href="javascript:void 0;" class="sort-by-item active" data-order="time">时间排序</a>
-          <a href="javascript:void 0;" class="sort-by-item" data-order="rating">评分排序</a>
-        </div>
-        <div class="sc-dIsUp fIuTG">
-          {{range $idx,$item := $items}}
-          {{if ne $idx 0}}
-            {{ $rating := float (index $item 6)}}
-            {{ $coverSrc := index $item 5 }}
-            {{ $douURL := replaceRE "https://movie.douban.com/subject/([0-9]+)/" "https://dou.img.lithub.cc/movie/$1.jpg" $coverSrc}}
-            <div 
-              class="sc-gKAaRy dfdORB movie-item" 
-              data-year="{{index $item 11}}" 
-              data-star="{{index $item 8}}"
-              data-rating="{{$rating}}"
-              data-genres="{{index $item 7}}"
-            >
-              <div class="sc-hKFxyN HPRth">
-                <div class="lazyload-wrapper">
-                  <img class="avatar" src="{{ $douURL }}" referrer-policy="no-referrer" decoding="async" loading="lazy" alt="{{ index $item 9 }}"  title="{{ index $item 1 }}" width="150" height="220">
-                </div>
-              </div>
-              <div class="sc-fujyAs eysHZq">
-                <div class="rating"><span class="allstardark"><span class="allstarlight" style="width:{{mul  10 $rating }}%"></span></span><span class="rating_nums">{{$rating}}</span></div>
-              </div>
-              <div class="sc-iCoGMd kMthTr"><a rel="link" href="{{ index $item 5 }}" target="_blank">{{ index $item 1 }}</a></div>
-          </div>
-          {{end}}
-          {{end}}
-        </div>
-      </div>
+
+<div id="content" class="content-area">
+  <div id="controls" style="display: flex; justify-content: space-between; align-items: center;">
+    <div>
+      <button onclick="switchContent('movies')" class="toggle-button">我的电影</button>
+      <button onclick="switchContent('books')" class="toggle-button">我的书籍</button>
     </div>
-  </div>
-  
-  <!-- Books Section -->
-  <div id="booksContent" class="content-section hide">
-    <script type="text/javascript">
-      function searchBooks(e) {
-        document.querySelectorAll('.book-item').forEach(item => item.classList.add('hide'));
-        // your book search logic here...
-      }
-      function sortBooks(e) {
-        // your book sort logic here...
-      }
-      // Event listeners for books
-      window.addEventListener('click', function(e) {
-        if(e.target.classList.contains('sc-gtsrHT')) {
-          e.preventDefault();
-          searchBooks(e);
-        }
-        if(e.target.classList.contains('sort-by-item')) {
-          e.preventDefault();
-          sortBooks(e);
-        }
-      });
-    </script>
-    <div class="lg:col-start-2 lg:col-span-6">
-      {{$items := getCSV "," "data/douban/book.csv" }}
-      <div class="sc-ksluID gFnzgG">
-        <div class="sc-bdnxRM">
-          <a href="javascript:void 0;" class="sc-gtsrHT kEoOHR" data-search="year" data-method="equal" data-value="">全部</a>
-          {{range $year := (seq now.Year -1 2012)}}
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="year" data-method="equal" data-value="{{$year}}">{{$year}}</a>
-          {{end}}
-        </div>
-        <div class="sc-bdnxRM">
-          <a href="javascript:void 0;" class="sc-gtsrHT kEoOHR" data-search="star" data-method="equal" data-value="">全部</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="5">五星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="4">四星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="3">三星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="2">二星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="1">一星</a>
-          <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="star" data-method="equal" data-value="0">零星</a>
-        </div>
-        <div class="jvCTkj sort-by">
-          <a href="javascript:void 0;" class="sort-by-item active" data-order="time">时间排序</a>
-          <a href="javascript:void 0;" class="sort-by-item" data-order="rating">评分排序</a>
-        </div>
-        <div class="sc-dIsUp fIuTG">
-          {{range $idx,$item := $items}}
-          {{if ne $idx 0}}
-            {{$rating := 0}}
-            {{if index $item 6 }}
-              {{ $rating = float (index $item 6) }}
-            {{end}}
-            {{ $coverSrc := index $item 5 }}
-            {{ $douURL := replaceRE "https://book.douban.com/subject/([0-9]+)/" "https://dou.img.lithub.cc/book/$1.jpg" $coverSrc}}
-            <div 
-              class="sc-gKAaRy dfdORB book-item" 
-              data-year="{{index $item 11}}"
-              data-star="{{index $item 8}}"
-              data-rating="{{$rating}}"
-            >
-                <div class="sc-hKFxyN HPRth">
-                  <div class="lazyload-wrapper">
-                    <img class="avatar" src="{{ $douURL }}" referrer-policy="no-referrer" decoding="async" loading="lazy" alt="{{ index $item 9 }}"  title="{{ index $item 1 }}" width="150" height="220">
-                  </div>
-                </div>
-                <div class="sc-fujyAs eysHZq">
-                  <div class="rating"><span class="allstardark"><span class="allstarlight" style="width:{{mul  10 $rating }}%"></span></span><span class="rating_nums">{{$rating}}</span></div>
-                </div>
-                <div class="sc-iCoGMd kMthTr"><a rel="link" href="{{ index $item 5 }}" target="_blank">{{ index $item 1 }}</a></div>
-            </div>
-          {{end}}
-          {{end}}
-        </div>
+    <div id="filters" class="filters">
+      <div id="yearFilter" class="filter-section">
+        <span>年份：</span>
+        <a href="javascript:void(0);" class="filter-link" data-filter="all" onclick="filterContent('year', 'all')">全部</a>
+        <!-- Add more year filter links -->
+      </div>
+      <div id="ratingFilter" class="filter-section">
+        <span>评分：</span>
+        <a href="javascript:void(0);" class="filter-link" data-filter="all" onclick="filterContent('rating', 'all')">全部</a>
+        <!-- Add more rating filter links -->
       </div>
     </div>
   </div>
 
+  <!-- Movie Content -->
+  <div id="moviesContent" class="media-content">
+    <div class="content-header">我的观影</div>
+    <!-- Movie items go here -->
+  </div>
+
+  <!-- Book Content -->
+  <div id="booksContent" class="media-content hide">
+    <div class="content-header">我的书籍</div>
+    <!-- Book items go here -->
+  </div>
 </div>
 
 <script>
@@ -169,8 +42,67 @@
     } else if (section === 'books') {
       document.getElementById('booksContent').classList.remove('hide');
     }
+    resetFilters(); // Reset filters when switching sections
+  }
+
+  function filterContent(type, value) {
+    const content = document.querySelector('.media-content:not(.hide)');
+    const items = content.querySelectorAll('.media-item'); // Assumes each item has a class 'media-item'
+    items.forEach(item => {
+      if (value === 'all') {
+        item.style.display = 'block';
+      } else if (item.getAttribute(`data-${type}`) === value) {
+        item.style.display = 'block';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+  }
+
+  function resetFilters() {
+    const links = document.querySelectorAll('.filter-link');
+    links.forEach(link => link.classList.remove('active'));
+    links[0].classList.add('active'); // Assuming the first link is 'all'
+    filterContent('year', 'all');
+    filterContent('rating', 'all');
   }
 </script>
+
+<style>
+  .toggle-button {
+    margin-right: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .filters {
+    display: flex;
+    gap: 20px;
+  }
+
+  .filter-section {
+    display: flex;
+    gap: 5px;
+  }
+
+  .filter-link {
+    text-decoration: none;
+    color: #333;
+  }
+
+  .filter-link.active {
+    font-weight: bold;
+    color: #000;
+  }
+
+  .media-content {
+    margin-top: 20px;
+  }
+
+  .hide {
+    display: none;
+  }
+</style>
 
 {{ end }}
 
