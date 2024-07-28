@@ -4,8 +4,8 @@
   
   <!-- Navigation for switching content -->
   <div class="navigation">
-    <button id="moviesTab" onclick="switchContent('movies')">我的电影</button>
-    <button id="booksTab" onclick="switchContent('books')">我的书籍</button>
+    <a href="javascript:void(0);" id="moviesTab" onclick="switchContent('movies')">我的电影</a>
+    <a href="javascript:void(0);" id="booksTab" onclick="switchContent('books')">我的书籍</a>
   </div>
   
   <!-- Movies Section -->
@@ -107,7 +107,7 @@
     <div class="lg:col-start-2 lg:col-span-6">
       {{$items := getCSV "," "data/douban/book.csv" }}
       <div class="sc-ksluID gFnzgG">
-        <div class="sc-bdnxRM">
+        <!-- <div class="sc-bdnxRM">
           <a href="javascript:void 0;" class="sc-gtsrHT kEoOHR" data-search="year" data-method="equal" data-value="">全部</a>
           {{range $year := (seq now.Year -1 2012)}}
           <a href="javascript:void 0;" class="sc-gtsrHT dvtjjf" data-search="year" data-method="equal" data-value="{{$year}}">{{$year}}</a>
@@ -125,7 +125,7 @@
         <div class="jvCTkj sort-by">
           <a href="javascript:void 0;" class="sort-by-item active" data-order="time">时间排序</a>
           <a href="javascript:void 0;" class="sort-by-item" data-order="rating">评分排序</a>
-        </div>
+        </div> -->
         <div class="sc-dIsUp fIuTG">
           {{range $idx,$item := $items}}
           {{if ne $idx 0}}
