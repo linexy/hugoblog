@@ -15,7 +15,6 @@
 	--tabletWidth: (max-width:900px)
 }
 
-@import url("https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreen.min.css");
 body, h1, h2, h3, h4, p, .your-class {
     font-family: "LXGW WenKai Screen", sans-serif !important;
 }

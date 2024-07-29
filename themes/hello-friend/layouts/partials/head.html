@@ -20,7 +20,7 @@
 <meta name="apple-mobile-web-app-title" content="{{ $.Site.Title }}">
 <link rel="bookmark" href="{{ "favicon.ico" | absURL }}">
 <link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ "favicon.ico" | absURL }}" >
-
+@import url("https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreen.min.css");
 <!-- OG data -->
 {{ partial "opengraph.html" . }}
 <!-- RSS | JSON -->
@@ -32,4 +32,14 @@
 {{ end -}}
 
 <script  src="/quicklink.umd.js"></script>
+<script type="text/javascript" src="/moment.min.js"></script>
+<script type="text/javascript" src="/moment.twitter.min.js"></script>
+<script>
+    function formatDate(param) {
+    if(typeof param === 'number') {
+         param = new Date(param * 1000).toISOString();
+      }
+    return moment(Date.parse(param)).twitterLong().replace(/\s\d{2}:\d{2}/, '');
+    }
+    </script>
 <script>window.addEventListener('load', () => {  quicklink.listen();});</script>
