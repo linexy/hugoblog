@@ -25,10 +25,6 @@ ol,ul {
   list-style: none
 }
 
-ol li,ul li {
-  list-style: none
-}
-
 .header {
   display: flex;
   padding: 25px 0;
@@ -1385,7 +1381,7 @@ ol li,ul li {
 }
 
 .datacont p {
-  font-size: 1rem;
+  font-size: 1.4rem;
   line-height: 1.8;
   margin: 0;
   text-align: justify
