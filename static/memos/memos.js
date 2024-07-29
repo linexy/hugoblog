@@ -523,7 +523,7 @@ async function updateHtml(data) {
     }else{
       itemOption = `<div class="item-option mr-1"><a class="d-flex" href="${memosLink}" target="_blank" rel="noopener noreferrer"><svg xmlns="http://www.w3.org/2000/svg" width="1.15rem" height="1.15rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6m4-3h6v6m-11 5L21 3"></path></svg></a></div>`;
     } 
-    // itemContent = `<div class="item-content"><div class="item-inner">${memosRes}</div><div class="item-footer d-flex mt-2"><div class="d-flex">${memosTag}</div>`;
+     itemContent = `<div class="item-content"><div class="item-inner">${memosRes}</div>`; //<div class="item-footer d-flex mt-2"><div class="d-flex">${memosTag}</div>`;
     if(memosVisibility !== "PUBLIC"){
       itemContent += `<div class="d-flex flex-fill justify-content-end"><div class="item d-flex align-items-center mr-1" onclick="getUserMemos('${link}','${creatorId}','${creatorName}','${avatar}','','','NOPUBLIC')"><svg xmlns="http://www.w3.org/2000/svg" width="1.15rem" height="1.15rem" viewBox="0 0 14 14"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M1.68 4.206C2.652 6.015 4.67 7.258 7 7.258c2.331 0 4.348-1.243 5.322-3.052M2.75 5.596L.5 7.481m4.916-.415L4.333 9.794m6.917-4.198l2.25 1.885m-4.92-.415l1.083 2.728"/></svg></div></div></div>`;
     } else {
