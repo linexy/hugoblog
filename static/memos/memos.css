@@ -1,8 +1,6 @@
-@charset "UTF-8";:root {
-  --font-family-paragraph: 'JetBrainsMono',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Helvetica,"PingFangSC-Regular","Hiragino Sans GB","Lantinghei SC","Microsoft Yahei","Source Han Sans CN","WenQuanYi Micro Hei",SimSun,sans-serif;
-  --font-family-title: 'JetBrainsMono',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Helvetica,"PingFangSC-Regular","Hiragino Sans GB","Lantinghei SC","Microsoft Yahei","Source Han Sans CN","WenQuanYi Micro Hei",SimSun,sans-serif;
-  --font-family-code: 'JetBrainsMono', -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Ubuntu,"Helvetica Neue",Helvetica,"PingFangSC-Regular","Hiragino Sans GB","Lantinghei SC","Microsoft Yahei","Source Han Sans CN","WenQuanYi Micro Hei",SimSun,sans-serif;
-  --bankuai-color: #f6f6f6;
+@charset "UTF-8";
+:root {
+   --bankuai-color: #f6f6f6;
   --background-color: #fff;
   --background-dark-color: #201d1e;
   --text-content-color: #222;
@@ -11,7 +9,21 @@
   --frame-dark-color: #332D2F;
   --frame-color: #eee;
   --erji-color: #666;
-  --sanji-color: #999
+  --sanji-color: #999;
+  --light-background: #fff;
+	--light-background-secondary: #eaeaea;
+	--light-header: #fff;
+	--light-color: #222;
+	--light-color-secondary: #999;
+	--light-border-color: #dcdcdc;
+	--dark-background: #2f2f2f;
+	--dark-background-secondary: #3b3d42;
+	--dark-header: #252627;
+	--dark-color: #f5f5f5;
+	--dark-color-secondary: #73747b;
+	--dark-border-color: #4a4b50;
+	--phoneWidth: (max-width:683px);
+	--tabletWidth: (max-width:900px)
 }
 
 body,html {
