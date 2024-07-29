@@ -3,7 +3,7 @@ languageCode = "zh-CN"
 # DefaultContentLanguage = "zh-CN"
 title  =  "神呆日志"
 subtitle = "总有些美好值得为之奋斗！"
-
+enableRobotsTXT = true
 
 theme  =  "hello-friend"
 summaryLength = 140
@@ -82,8 +82,3 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 [outputFormats.Atom]
   mediatype = "application/rss"
   baseName = "atom"
-
-enableRobotsTXT = true
-
-[body]
-fontFamilyBody = "'LXGW WenKai Screen', 'Palatino Linotype', serif"

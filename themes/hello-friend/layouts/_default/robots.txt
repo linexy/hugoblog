@@ -1,7 +1,0 @@
-User-agent: *
-allow: /
-allow:/bbs/
-allow:/good/
-allow:/archives/
-allow:/posts/
-Sitemap: https://lzsay.com/sitemap.xml
