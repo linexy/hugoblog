@@ -33,6 +33,7 @@ function checkNightMode() {
 
       {{ block "footer" . }}
         {{ partial "footer.html" . }}
+        {{ $scripts := resources.Get "/scripts.js" }}
       {{ end }}
     </div>
   </body>
