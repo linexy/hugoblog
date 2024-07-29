@@ -1,24 +1,4 @@
 {{ define "main" }}
-
-<div class="index-laodao-titile">最新唠叨</div>
-</div>
-<!--memos--> 
-<div id="memos"></div>
-<div id="bber"></div>
-<!-- 加载 Markdown 语法-->
-<script src="https://fastly.jsdelivr.net/npm/marked/marked.min.js"></script>
-<link rel="stylesheet" href="../memos/memos.css">
-<!--memos 内容-->
-<script src="../memos/memos.js"></script>
-<script src="/coco-message.min.js"></script>
-<!--memos结束--> 
-{{ end }}
-
-{{ define "footer" }}
-<script src="/theme-main-1.js"></script>
-{{ end }}
-
-{{ define "main" }}
   {{ $PageContext := . }}
   {{ if .IsHome }}
     {{ $PageContext = .Site }}
