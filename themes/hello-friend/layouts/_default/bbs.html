@@ -15,6 +15,16 @@
     <div id="bber"></div>
     <!-- 加载 Markdown 语法-->
     <script src="https://fastly.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script type="text/javascript" src="/moment.min.js"></script>
+<script type="text/javascript" src="/moment.twitter.min.js"></script>
+<script>
+    function formatDate(param) {
+    if(typeof param === 'number') {
+         param = new Date(param * 1000).toISOString();
+      }
+    return moment(Date.parse(param)).twitterLong().replace(/\s\d{2}:\d{2}/, '');
+    }
+    </script>
     <!--memos 内容-->
     <script src="../memos/memos.js"></script>
     <script src="/coco-message.min.js"></script>
