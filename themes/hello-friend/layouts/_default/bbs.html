@@ -3,11 +3,6 @@
   {{ if .IsHome }}
     {{ $PageContext = .Site }}
   {{ end }}
-
-  {{/* Filter to ensure only pages of type "posts" are included */}}
-  {{ $postsOnly := where $PageContext.RegularPages "Type" "posts" }}
-  {{ $paginator := .Paginate $postsOnly }}
-
   <div class="index-laodao-titile">最新唠叨</div>
 </div>
 <!--memos--> 
@@ -20,5 +15,4 @@
 <script src="../memos/memos.js"></script>
 <script src="/coco-message.min.js"></script>
 <!--memos结束--> 
-  </div>
 {{ end }}
