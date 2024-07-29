@@ -4,12 +4,7 @@
     {{ $PageContext = .Site }}
   {{ end }}
 
-  {{/* Filter to ensure only pages of type "posts" are included */}}
-  {{ $postsOnly := where $PageContext.RegularPages "Type" "posts" }}
-  {{ $paginator := .Paginate $postsOnly }}
-
   <div class="posts posts-home home">
-    {{ range $paginator.Pages }}
       <div class="post list-item">
         <div class="index-laodao-titile">最新唠叨</div>
     </div>
@@ -24,6 +19,5 @@
     <link rel="stylesheet" href="../memos/memos.css">
       </div>
     {{ end }}
-    {{ partial "pagination.html" . }}
   </div>
 {{ end }}
