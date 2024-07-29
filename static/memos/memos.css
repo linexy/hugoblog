@@ -334,9 +334,6 @@ ol li,ul li {
   list-style: disc
 }
 
-.content ul li {
-  list-style: disc
-}
 
 .content ol {
   list-style: decimal
@@ -1381,7 +1378,7 @@ ol li,ul li {
 }
 
 .datacont p {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   line-height: 1.8;
   margin: 0;
   text-align: justify
