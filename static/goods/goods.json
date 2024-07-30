@@ -1,6 +1,13 @@
 {
     "good": [
         {
+            "image": "/goods/mouse.webp",
+            "jiage": "¥167.4 (24-07)",
+            "title": "雷柏VT9PRO",
+            "link": "https://u.jd.com/ozg0hgI",
+            "note": "京东购入，罗技的鼠标用坏两个了，体验下国产鼠标。"
+        },
+        {
             "image": "/goods/sonyux570f.webp",
             "jiage": "¥410 (24-04)",
             "title": "索尼录音笔ICD-UX570F",
