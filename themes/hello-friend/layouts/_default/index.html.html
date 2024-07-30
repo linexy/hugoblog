@@ -7,7 +7,7 @@
   {{/* Filter to ensure only pages of type "posts" are included */}}
   {{ $postsOnly := where $PageContext.RegularPages "Type" "posts" }}
   {{ $paginator := .Paginate $postsOnly }}
-
+  <div id="bber-talk"></div>
   <div class="posts posts-home home">
     {{ range $paginator.Pages }}
       <div class="post list-item">
