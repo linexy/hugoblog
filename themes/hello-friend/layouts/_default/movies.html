@@ -31,7 +31,7 @@
       });
     </script>
     <div class="lg:col-start-2 lg:col-span-6">
-      {{$movieitems := getJSON "https://dbapi.immmmm.com/list?type=movie" }}
+      {{$movieitems := getJSON "https://bmapi.lzsay.com/list?type=movie" }}
       <div class="sc-ksluID gFnzgG">
         <div class="items sc-dIsUp fIuTG">
           {{range $item := $movieitems.results}}
