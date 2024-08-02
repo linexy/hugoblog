@@ -9,7 +9,11 @@
 <style>
   .footer__inner {
       display: flex;
+      justify-content: space-between; /* 图标和版权信息左右对齐 */
       align-items: center;
+      max-width: 800px; /* 最大宽度设置为800px */
+      margin: 0 auto; /* 水平居中页面 */
+      padding: 10px; /* 内边距 */
   }
   
   .footer__inner a {
@@ -23,7 +27,14 @@
   }
 
   .copyright {
-      margin-left: auto; /* 版权信息右对齐 */
+      margin-left: auto; /* 确保版权信息在最大宽度内右对齐 */
+  }
+
+  /* 添加媒体查询以确保在800px或以下时布局正常 */
+  @media (max-width: 800px) {
+      .footer__inner {
+          flex-wrap: wrap; /* 当视口小于800px时自动换行 */
+      }
   }
 </style>
 
