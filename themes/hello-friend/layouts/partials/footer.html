@@ -9,7 +9,7 @@
 <style>
   .footer__inner {
       display: flex;
-      justify-content: space-between; /* 图标和版权信息左右对齐 */
+      justify-content: space-between; /* 默认状态下左右对齐 */
       align-items: center;
       max-width: 800px; /* 最大宽度设置为800px */
       margin: 0 auto; /* 水平居中页面 */
@@ -33,7 +33,16 @@
   /* 添加媒体查询以确保在800px或以下时布局正常 */
   @media (max-width: 800px) {
       .footer__inner {
-          flex-wrap: wrap; /* 当视口小于800px时自动换行 */
+          flex-direction: column; /* 改为列方向 */
+          align-items: center; /* 水平居中对齐 */
+      }
+      .footer__inner a {
+          margin-right: 0; /* 移除图标的右边距 */
+          margin-bottom: 5px; /* 为图标添加底部间距 */
+      }
+      .copyright {
+          margin-left: 0; /* 取消左侧自动边距 */
+          margin-top: 10px; /* 添加顶部间距以分隔行 */
       }
   }
 </style>
