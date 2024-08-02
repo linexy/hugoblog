@@ -1046,6 +1046,8 @@ hr {
 	color: var(--light-color-secondary);
 	background: var(--light-header);
 }
+
+
 .home-footer{
 	background:var(--light-background);
 }
@@ -1059,21 +1061,45 @@ hr {
 	background:var(--dark-background);
 }
 .footer__inner {
+	display: flex;
+	justify-content: space-between; /* 默认状态下左右对齐 */
 	align-items: center;
-	justify-content: space-between;
-	margin: 0 auto;
-	max-width: 100%
+	max-width: 800px; /* 最大宽度设置为800px */
+	margin: 0 auto; /* 水平居中页面 */
+	padding: 10px; /* 内边距 */
+	flex-wrap: wrap; /* 允许换行 */
+}
+
+.footer__inner a {
+	text-decoration: none; /* 去除下划线 */
+	margin-right: 10px; /* 图标间距 */
+}
+
+.footer__inner a:hover,
+.footer__inner a:focus {
+	text-decoration: none; /* 确保在悬停或聚焦时不添加下划线 */
 }
 
 @media (max-width:899px) {
 	.footer__inner {
-		flex-direction: column
+		flex-direction: column; /* 改为列方向以便元素堆叠 */
+		align-items: center; /* 水平居中对齐 */
+	}
+	.footer__inner a {
+		margin-right: 0; /* 移除图标的右边距 */
+		margin-bottom: 10px; /* 为图标添加底部间距 */
+	}
+	.copyright {
+		margin-left: 0; /* 取消左侧自动边距 */
+		margin-top: 10px; /* 添加顶部间距以分隔行 */
+		text-align: center; /* 版权信息居中 */
 	}
 }
 
 .footer a {
 	color: inherit
 }
+
 
 .footer .copyright {
 	flex-direction: row;
