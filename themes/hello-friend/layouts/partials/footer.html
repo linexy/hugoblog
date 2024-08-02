@@ -5,6 +5,16 @@
 
 {{$totalWord := $scratch.Get "total" }}
 {{ $wowWord := div $totalWord 10000}}
+<style>
+  .footer__inner a {
+      text-decoration: none; /* 去除下划线 */
+  }
+  
+  .footer__inner a:hover,
+  .footer__inner a:focus {
+      text-decoration: none; /* 确保在悬停或聚焦时不添加下划线 */
+  }
+  </style>
 
 <footer class="footer {{ if .IsHome -}}home-footer{{- end -}}">
   <div class="footer__inner">
