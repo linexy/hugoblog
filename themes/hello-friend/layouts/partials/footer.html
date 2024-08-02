@@ -5,22 +5,30 @@
 
 {{$totalWord := $scratch.Get "total" }}
 {{ $wowWord := div $totalWord 10000}}
+
 <style>
-  .footer__inner a {
-      text-decoration: none; /* 去除下划线 */
+  .footer__inner {
+      display: flex;
+      align-items: center;
   }
   
+  .footer__inner a {
+      text-decoration: none; /* 去除下划线 */
+      margin-right: 10px; /* 图标间距 */
+  }
+
   .footer__inner a:hover,
   .footer__inner a:focus {
       text-decoration: none; /* 确保在悬停或聚焦时不添加下划线 */
   }
-  </style>
+
+  .copyright {
+      margin-left: auto; /* 版权信息右对齐 */
+  }
+</style>
 
 <footer class="footer {{ if .IsHome -}}home-footer{{- end -}}">
   <div class="footer__inner">
-<!--     <div class="copyright copyright-font">
-      <span><a href="https://lzsay.com" target="_blank" rel="noopener">linexy Blog</a></span>
-    </div> -->
     <a href="https://lzsay.com/feed" target="_blank">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="30px" height="30px">
           <path d="M12 17C12 14 10 12 7 12" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round" />
@@ -51,9 +59,9 @@
   </svg>
 </a>
 
-        <div class="copyright">
+    <div class="copyright">
         <span>linexy • © {{ now.Year }} • <a href="https://lzsay.com" target="_blank" rel="noopener">linexy Blog</a></span>
-      </div>
+    </div>
   </div>
 </footer>
 
