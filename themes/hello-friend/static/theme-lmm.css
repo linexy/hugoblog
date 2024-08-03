@@ -1040,7 +1040,7 @@ hr {
 .footer {
 	width: 100%;
 	margin: 0 auto;
-	padding: 50px 20px 20px;
+	/* padding: 50px 20px 20px; */
 	flex-grow: 0;
 	color: #999;
 	color: var(--light-color-secondary);
@@ -1061,10 +1061,6 @@ hr {
 	background:var(--dark-background);
 }
 .footer__inner {
-	display: flex;
-	justify-content: space-between; /* 默认状态下左右对齐 */
-	align-items: center;
-	max-width: 800px; /* 最大宽度设置为800px */
 	margin: 0 auto; /* 水平居中页面 */
 	padding: 10px; /* 内边距 */
 	flex-wrap: wrap; /* 允许换行 */
