@@ -11,6 +11,7 @@
   --erji-color: #666;
   --sanji-color: #999;
   --light-background: #fff;
+  --light-color-hover: rgba(0,0,0, .05);
 	--light-background-secondary: #eaeaea;
 	--light-header: #fff;
 	--light-color: #222;
@@ -400,10 +401,12 @@ ol li,ul li {
 }
 
 .content blockquote {
-  border-left: 5px solid #666;
-  margin: 30px 0;
-  padding: 20px
+	margin: 1rem 0；
+	padding：.5rem 1rem；
+	border-radius：.33rem；
+	background-color: var(--light-color-hover)；
 }
+
 
 .content blockquote p {
   font-size: 20px;
@@ -1563,17 +1566,6 @@ ol li,ul li {
   font-family: var(--font-family-code);
   margin: 0 4px;
   word-wrap: break-word
-}
-
-blockquote p {
-  background: var(--background-color);
-  border-radius: 0 4px 4px 0;
-  padding: 10px;
-  font-size: 1rem!important;
-  line-height: 1.6!important;
-  border-left: 4px solid #bfbfbf;
-  color: #666!important;
-  margin: -10px -40px 0!important
 }
 
 .load-memos-editor {
