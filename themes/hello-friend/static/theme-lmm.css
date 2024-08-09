@@ -102,7 +102,7 @@ a.read-more,a.read-more:active,a.read-more:hover {
 	box-shadow: none;
 	padding: 0;
 	margin: 20px 0 0;
-	font-weight: 700
+	color: #666
 }
 
 .dark a.read-more,.dark a.read-more:active,.dark a.read-more:hover {
@@ -708,7 +708,8 @@ hr {
 }
 
 .post-meta {
-	font-size: 1rem;
+	font-size: .8rem;
+	color: #666;
 	margin-bottom: 10px
 }
 
