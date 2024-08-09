@@ -401,10 +401,10 @@ ol li,ul li {
 }
 
 .content blockquote {
-	margin: 1rem 0；
-	padding：.5rem 1rem；
-	border-radius：.33rem；
-	background-color: var(--light-color-hover)；
+	margin: 1rem 0;
+	padding: .5rem 1rem;
+	border-radius: .33rem;
+	background-color: var(--light-color-hover)
 }
 
 
