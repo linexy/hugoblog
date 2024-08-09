@@ -409,7 +409,7 @@ ol li,ul li {
 
 
 .content blockquote p {
-  font-size: 20px;
+  font-size: 16px;
   display: inline;
   color: var(--color-base-text)
 }
