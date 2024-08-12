@@ -1,5 +1,5 @@
 ---
-title: 抱怨，只是无能和无奈的表现而已
+title: Vol.005 抱怨，只是无能和无奈的表现而已
 slug: weekly
 date: 2024-08-12
 tags:
