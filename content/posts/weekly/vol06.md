@@ -14,6 +14,7 @@ date: 2024-11-22
 
 ## 玩
 趁周末全家来了一趟短途旅行，有小朋友，只能城市游，去了网红城市长沙。小红书攻略一大堆，成熟的逛街路线。吃了臭豆腐，喝了茶颜悦色，看了主席像，去了宇宙中心万家丽。
+
 ![b49b599a6ab61532443a0bd1718a48c.jpg](https://img.lzsay.com/lzsay-img/2024/11/510abfca73c00e3c35c4c69d52033be5.jpg)
 ![b981b9ee51f5c2368932f21624d5f7e.jpg](https://img.lzsay.com/lzsay-img/2024/11/d60bd56de922c4787be7a9ebfbb720dc.jpg)
 
