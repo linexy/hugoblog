@@ -2864,3 +2864,19 @@ body {
       transform: translateY(0)
   }
 }
+#memos-heatmap {
+  padding: 20px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+#memos-heatmap rect {
+  stroke: white;
+  stroke-width: 1px;
+}
+
+#memos-heatmap rect:hover {
+  stroke: #000;
+  stroke-width: 1px;
+}

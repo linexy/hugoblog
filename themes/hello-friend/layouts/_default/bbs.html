@@ -3,7 +3,7 @@
   {{ if .IsHome }}
     {{ $PageContext = .Site }}
   {{ end }}
-
+  {{ partial "memos-heatmap.html" . }}
   <div class="posts posts-home home">
       <div class="post list-item">
         <div class="index-laodao">
