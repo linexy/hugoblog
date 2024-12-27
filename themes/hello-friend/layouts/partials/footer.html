@@ -20,6 +20,16 @@
 <script type="text/javascript" src="/view-image.js"></script>
 <script type="text/javascript" src="/pangu.min.js"></script>
 <script>
+  // 为文章内容中的所有图片添加点击缩放功能
+  document.addEventListener('DOMContentLoaded', function() {
+    mediumZoom('article img', {
+      margin: 24,
+      background: 'rgba(0,0,0,0.8)',
+      scrollOffset: 0,
+    });
+  });
+</script>
+<script>
   document.addEventListener('DOMContentLoaded', () => {
     pangu.autoSpacingPage();
   });
