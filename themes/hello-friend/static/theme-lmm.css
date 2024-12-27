@@ -1646,21 +1646,3 @@ div.code-toolbar>.toolbar a:focus,div.code-toolbar>.toolbar a:hover,div.code-too
 	color: var(--text-highlight-color);
 	transition: all .25s ease-in-out;
   }
-/* 添加图片悬停效果 */
-article img {
-    cursor: zoom-in;
-    transition: transform 0.3s ease;
-}
-
-article img:hover {
-    transform: scale(1.01);
-}
-
-/* medium-zoom 样式调整 */
-.medium-zoom-overlay {
-    z-index: 999;
-}
-
-.medium-zoom-image--opened {
-    z-index: 1000;
-}
