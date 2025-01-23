@@ -5,7 +5,7 @@
 <meta name="referrer" content="no-referrer">
 <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1"/>
 <script>if (/*@cc_on!@*/false || (!!window.MSInputMethodContext && !!document.documentMode)) document.write('\x3Cscript id="_iealwn_js" data-outver="11" src="https://support.dmeng.net/ie-alert-warning/latest.js">\x3C/script>'); </script>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5">
 <meta name="description" content="{{ if .IsHome }}{{ $.Site.Params.Subtitle }}{{ else }}{{ .Summary | plainify }}{{ end }}"/>
 <meta name="keywords" content="{{ with .Params.Keywords }}{{ delimit . ", " }}{{ else }}{{ $.Site.Params.Keywords }}{{ end }}"/>
 
@@ -14,12 +14,12 @@
 <link rel="stylesheet" href="/theme-lmm.css?v=2401-1">
 <link rel="shortcut icon" href="{{ "favicon.ico" | absURL }}">
 
-<link rel="apple-touch-icon" href="{{ "favicon.ico" | absURL }}">
+<link rel="apple-touch-icon" href="https://img.lzsay.com/lzsay-img/2024/06/c9c741254cdcddedbc24d389a08da43e.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 <meta name="apple-mobile-web-app-title" content="{{ $.Site.Title }}">
 <link rel="bookmark" href="{{ "favicon.ico" | absURL }}">
-<link rel="apple-touch-icon-precomposed" sizes="180x180" href="{{ "favicon.ico" | absURL }}" >
+<link rel="apple-touch-icon-precomposed" sizes="180x180" href="https://img.lzsay.com/lzsay-img/2024/06/c9c741254cdcddedbc24d389a08da43e.png" >
 
 <!-- OG data -->
 {{ partial "opengraph.html" . }}
@@ -29,7 +29,16 @@
 {{ end -}}
 {{- if not .Site.IsServer }}
 <script async defer data-website-id="06f41c37-d97a-45a0-bc36-537aa58e81aa" src="https://u.lzsay.com/script"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-N4LEN9VZ07');
+</script>
 {{ end -}}
 
 <script  src="/quicklink.umd.js"></script>
+<script type="text/javascript" src="/scripts.js"></script>
 <script>window.addEventListener('load', () => {  quicklink.listen();});</script>

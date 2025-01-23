@@ -6,6 +6,8 @@ tags:
   - 周报
 feature: https://img.lzsay.com/lzsay-img/2024/07/be6f01b6ed015b4f0b99a4097cdd71e6.png
 ---
+报纸和政府不一样。如果我们发表了声明，我们得证明那是真的。
+<!--more-->
 ## 播客
 
 ### 西湖的历史

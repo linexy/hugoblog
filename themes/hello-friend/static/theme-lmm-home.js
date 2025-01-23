@@ -21,6 +21,7 @@ fetch(bbUrl).then(res => res.json()).then( resdata =>{
     //相对时间
     window.Lately && Lately.init({ target: '.datetime' });
 });
+
 //memos 相册
 var albumDom = document.querySelector('#album') || '';
 var memoUrl = "https://memos.lzsay.com/"
@@ -100,6 +101,8 @@ function loadAlbum(albumData,limit){
         if(albumDom){
           albumDom.innerHTML = resultAll
         }
+        //相对时间
+        window.Lately && Lately.init({ target: '.photo-time'});
       }
     }
   }

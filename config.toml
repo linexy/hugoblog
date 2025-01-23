@@ -3,7 +3,7 @@ languageCode = "zh-CN"
 # DefaultContentLanguage = "zh-CN"
 title  =  "神呆日志"
 subtitle = "总有些美好值得为之奋斗！"
-
+enableRobotsTXT = true
 
 theme  =  "hello-friend"
 summaryLength = 140
@@ -29,13 +29,21 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   url="/goods/"
   weight="3"
   [[menu.main]]
+  name="书影音"
+  url="/movies/"
+  weight="4"
+  [[menu.main]]
+  name="光影"
+  url="/album/"
+  weight="5"
+  [[menu.main]]
   name="归档"
   url="/archives/"
-  weight="4"
+  weight="6"
   [[menu.main]]
   name="关于"
   url="/about/"
-  weight="6"
+  weight="7"
 
 [Author]
   name = "linexy"
@@ -49,7 +57,7 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
   showMenuItems = 6
   # Enable to show reading time in minutes for posts
   showReadingTime = false
-  logoText = "hello friend"
+  logoText = "lzsay"
 
   MenuMore = "更多"
   DateFormatList = "2006-01-02"
@@ -74,8 +82,3 @@ ignoreErrors = ["error-remote-getjson","error-remote-getcsv"]
 [outputFormats.Atom]
   mediatype = "application/rss"
   baseName = "atom"
-
-enableRobotsTXT = true
-
-[body]
-fontFamilyBody = "'LXGW WenKai Screen', 'Palatino Linotype', serif"

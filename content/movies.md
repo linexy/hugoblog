@@ -1,4 +1,4 @@
 ---
-title: "我的观影"
+title: ""
 layout: "movies"
 ---
