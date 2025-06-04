@@ -1,6 +1,22 @@
 {
     "good": [
         {
+            "image": "/goods/iPhone16ProMax.webp",
+            "jiage": "¥9999 (24-10)",
+            "title": "iPhone16 ProMax",
+            "link": "https://www.apple.com.cn/",
+            "note": "苹果官网首发24期免息购入。",
+            "isDeleted": false
+        },
+        {
+            "image": "/goods/AirPodsPro2.webp",
+            "jiage": "¥1478.15 (24-10)",
+            "title": "AirPods Pro2",
+            "link": "https://www.apple.com.cn/shop/buy-airpods/airpods-pro-2nd-generation?product=MNNY3CH/A&step=config#",
+            "note": "京东购入，换了苹果手机耳机也换了吧。",
+            "isDeleted": false
+        },
+        {
             "image": "/goods/mouse.webp",
             "jiage": "¥167.4 (24-07)",
             "title": "雷柏VT9PRO",
@@ -22,7 +38,7 @@
             "title": "Galaxy Buds2 Pro",
             "link": "https://www.samsung.com/us/mobile-audio/galaxy-buds2-pro/",
             "note": "咸鱼二手，降噪能力和苹果比差的比较多，非三星手机使用有些细节不友好。",
-            "isDeleted": false
+            "isDeleted": true
         },
         {
             "image": "/goods/leaf3.webp",
