@@ -10,8 +10,18 @@
   <div class="goods-bankuai img-hide">
     <div class="goods-duiqi"><img loading="lazy" decoding="async" src="{{ .image }}"></div>
     <div class="goods-jiage">{{ .jiage }}</div>
-    <div class="goods-title"><a href="{{ .link }}">{{ .title }}</a></div>
-    <div class="goods-note">{{ .note }}</div>
+    <div class="goods-title">
+      {{ if .link }}
+        <a href="{{ .link }}">
+          {{ if .isDeleted }}<del>{{ .title }}</del>{{ else }}{{ .title }}{{ end }}
+        </a>
+      {{ else }}
+        {{ if .isDeleted }}<del>{{ .title }}</del>{{ else }}{{ .title }}{{ end }}
+      {{ end }}
+    </div>
+    <div class="goods-note">
+      {{ if .isDeleted }}<del>{{ .note }}</del>{{ else }}{{ .note }}{{ end }}
+    </div>
   </div>
   {{ end }}
   </div>
